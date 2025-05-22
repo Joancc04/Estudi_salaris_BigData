@@ -1,5 +1,5 @@
 # Install required packages if you haven't already
-install.packages(c("dplyr", "readr", "plotly"))
+# install.packages(c("dplyr", "readr", "plotly"))
 
 # Load libraries
 library(dplyr)
@@ -7,7 +7,7 @@ library(readr)
 library(plotly)
 
 # Load the CSV file
-df <- read_csv("filtered_salaries.csv")
+df <- read_csv("Data_Science_Salaries.csv")
 
 # Group by employee residence and compute mean salary
 mean_salary_by_country <- df %>%
@@ -33,6 +33,7 @@ fig
 
 
 # num data for each row
+
 
 country_counts <- df %>%
   group_by(`Employee Residence`) %>%
