@@ -33,8 +33,6 @@ fig
 
 
 # num data for each row
-
-
 country_counts <- df %>%
   group_by(`Employee Residence`) %>%
   summarise(`Row Count` = n()) %>%
