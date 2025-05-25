@@ -1,5 +1,7 @@
+# Versión 3 - Explorador de Salarios con diseño profesional
+
 # Instalar si no tienes estos paquetes
-# install.packages(c("shiny", "dplyr", "ggplot2", "readr", "plotly", "DT"))
+# install.packages(c("shiny", "dplyr", "ggplot2", "readr", "plotly", "DT", "scales", "bslib"))
 
 library(shiny)
 library(dplyr)
@@ -7,113 +9,243 @@ library(ggplot2)
 library(readr)
 library(plotly)
 library(DT)
+library(scales)
+library(bslib)
 
 # Cargar el dataset
 df <- read_csv("Data_Science_Salaries.csv")
 
-# UI - Interfaz de usuario
+# Añadir columna de región y teletrabajo
+df <- df %>% mutate(
+  Region = case_when(
+    `Company Location` %in% c("United States", "Canada", "Mexico") ~ "América del Norte",
+    `Company Location` %in% c("Brazil", "Colombia", "Argentina", "Chile") ~ "América del Sur",
+    `Company Location` %in% c("Germany", "France", "United Kingdom", "Netherlands", "Spain", "Italy", "Romania", "Greece") ~ "Europa",
+    `Company Location` %in% c("India", "Vietnam", "Singapore", "China") ~ "Asia",
+    `Company Location` %in% c("Nigeria", "South Africa") ~ "África",
+    `Company Location` %in% c("Australia", "New Zealand") ~ "Oceanía",
+    TRUE ~ "Altres"
+  ),
+  Teletrabajo = if_else(`Company Location` == `Employee Residence`, "Presencial", "Remot")
+)
+
+# UI mejorado con layout moderno
+theme_config <- bs_theme(bootswatch = "flatly", base_font = font_google("Roboto"))
+
 ui <- fluidPage(
-  titlePanel("Explorador de Salarios en el Sector de les Dades"),
+  theme = theme_config,
   
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("experience", "Nivell d'experiència:",
-                  choices = unique(df$`Experience Level`),
-                  selected = "Mid"),
-      
-      selectInput("company_size", "Mida de l'empresa:",
-                  choices = unique(df$`Company Size`),
-                  selected = "Medium")
+  div(
+    class = "container",
+    br(),
+    div(
+      style = "text-align: center;",
+      h1("\U1F4BC Explorador de Salarios en el Sector de les Dades", style = "font-weight: 700;"),
+      p("Una aplicació interactiva per analitzar salaris globals en el sector de la ciència de dades.", style = "font-size: 18px;")
     ),
+    br(),
     
-    mainPanel(
-      tabsetPanel(
-        tabPanel("Gràfic Salarial per País",
-                 plotlyOutput("salary_plot")),
-        
-        tabPanel("Top 10 Treballs Millor Pagats",
-                 plotlyOutput("title_plot")),
-        
-        tabPanel("Estadístiques Resum",
-                 dataTableOutput("summary_table")),
-        
-        tabPanel("Recomanacions",
-                 h4("Millors països segons el teu perfil:"),
-                 dataTableOutput("recom_countries"),
-                 
-                 h4("Títol de treball millor pagat:"),
-                 verbatimTextOutput("recom_title"),
-                 
-                 h4("Recomanació personalitzada:"),
-                 textOutput("recom_text")
+    fluidRow(
+      column(
+        width = 3,
+        wellPanel(
+          h4("\U1F50D Filtres", style = "font-weight: bold;"),
+          selectInput("experience", "Nivell d'experiència:",
+                      choices = c("Qualsevol", unique(df$`Experience Level`)), selected = "Mid"),
+          selectInput("company_size", "Mida de l'empresa:",
+                      choices = c("Qualsevol", unique(df$`Company Size`)), selected = "Medium"),
+          selectInput("region", "Regió (opcional):",
+                      choices = c("Totes", unique(df$Region)), selected = "Totes"),
+          selectInput("remote", "Modalitat de treball:",
+                      choices = c("Qualsevol", "Remot", "Presencial"), selected = "Qualsevol"),
+          br(),
+          downloadButton("download_data", "Descarregar dades filtrades", class = "btn btn-success")
         )
-        
+      ),
+      
+      column(
+        width = 9,
+        tabsetPanel(
+          tabPanel(tagList(icon("calculator"), span("Simulador de salari")),
+                   br(),
+                   h4("Calcula una estimació del teu salari"),
+                   p("Introdueix les dades següents per obtenir una estimació basada en la mitjana del dataset."),
+                   fluidRow(
+                     column(6,
+                            selectInput("sim_exp", "Nivell d'experiència:", choices = c("Qualsevol", unique(df$`Experience Level`)))),
+                     column(6,
+                            selectInput("sim_size", "Mida de l'empresa:", choices = c("Qualsevol", unique(df$`Company Size`))))
+                   ),
+                   fluidRow(
+                     column(6,
+                            selectInput("sim_remote", "Modalitat de treball:", choices = c("Remot", "Presencial"))),
+                     column(6,
+                            selectInput("sim_region", "Regió:", choices = c("Totes", unique(df$Region))))
+                   ),
+                   br(),
+                   h4("Salari estimat:"),
+                   verbatimTextOutput("simulated_salary")
+          ),
+          tabPanel(tagList(icon("info-circle"), span("Inici")),
+                   br(),
+                   h3("Benvingut/da al panell interactiu de salaris!"),
+                   p("Aquesta aplicació t'ajuda a explorar les dades salarials globals per a professionals del món de la ciència de dades.", style = "font-size: 16px;"),
+                   p("Utilitza els filtres de l'esquerra per veure les estadístiques personalitzades.", style = "font-size: 16px;")),
+          tabPanel(tagList(icon("chart-bar"), span("Salari mitjà per país")),
+                   br(),
+                   plotlyOutput("salary_plot", height = "600px")),
+          
+          tabPanel(tagList(icon("dollar-sign"), span("Treballs millor pagats")),
+                   br(),
+                   plotlyOutput("title_plot", height = "600px")),
+          
+          tabPanel(tagList(icon("chart-area"), span("Distribució salarial")),
+                   br(),
+                   plotlyOutput("dist_plot", height = "600px")),
+          
+          tabPanel(tagList(icon("balance-scale"), span("Comparació global")),
+                   br(),
+                   plotlyOutput("comparativa_plot", height = "600px")),
+          
+          tabPanel(tagList(icon("pie-chart"), span("Remot vs Presencial")),
+                   br(),
+                   plotlyOutput("remote_plot", height = "400px")),
+          
+          tabPanel(tagList(icon("table"), span("Estadístiques resum")),
+                   br(),
+                   dataTableOutput("summary_table")),
+          
+          tabPanel(tagList(icon("lightbulb"), span("Recomanacions")),
+                   br(),
+                   h4("Millors països segons el teu perfil:"),
+                   dataTableOutput("recom_countries"),
+                   h4("Títol de treball millor pagat:"),
+                   verbatimTextOutput("recom_title"),
+                   h4("Recomanació personalitzada:"),
+                   textOutput("recom_text")
+          )
+        )
       )
-    )
+    ),
+    br()
   )
 )
 
-# SERVER - Lògica de la app
 server <- function(input, output) {
   
-  # Filtrado reactivo de dades
+  # Filtrado reactivo de dades amb region i modalitat de treball
   filtered_data <- reactive({
-    df %>%
-      filter(`Experience Level` == input$experience,
-             `Company Size` == input$company_size)
+    data <- df %>%
+      filter((input$experience == "Qualsevol" | `Experience Level` == input$experience),
+             (input$company_size == "Qualsevol" | `Company Size` == input$company_size))
+    
+    if (input$region != "Totes") {
+      data <- data %>% filter(Region == input$region)
+    }
+    
+    if (input$remote != "Qualsevol") {
+      data <- data %>% filter(Teletrabajo == input$remote)
+    }
+    
+    data
   })
   
-  # Gráfico interactivo por país
+  output$download_data <- downloadHandler(
+    filename = function() {
+      paste("salarios_filtrados.csv")
+    },
+    content = function(file) {
+      write.csv(filtered_data(), file, row.names = FALSE)
+    }
+  )
+  
   output$salary_plot <- renderPlotly({
     filtered_data() %>%
       group_by(`Company Location`) %>%
       summarise(Salari_Mig = mean(`Salary in USD`, na.rm = TRUE)) %>%
+      arrange(desc(Salari_Mig)) %>%
       plot_ly(
-        x = ~Salari_Mig,
         y = ~reorder(`Company Location`, Salari_Mig),
-        type = "bar",
-        orientation = "h",
-        marker = list(color = "steelblue")
+        x = ~Salari_Mig,
+        type = 'bar',
+        orientation = 'h',
+        marker = list(color = 'rgba(38, 166, 154, 0.8)',
+                      line = list(color = 'rgba(38, 166, 154, 1.0)', width = 1)),
+        text = ~paste0("$", formatC(Salari_Mig, format = "f", big.mark = ",", digits = 0)),
+        hoverinfo = 'text+y'
       ) %>%
       layout(
-        title = "Salari mitjà per país",
-        xaxis = list(title = "Salari mitjà (USD)"),
-        yaxis = list(title = "País")
+        title = list(text = "Salari mitjà per país", font = list(size = 20)),
+        xaxis = list(title = "Salari mitjà (USD)", tickfont = list(size = 12)),
+        yaxis = list(title = "País", tickfont = list(size = 12))
       )
   })
   
-  # Gráfico top 10 trabajos mejor pagados
   output$title_plot <- renderPlotly({
     filtered_data() %>%
       group_by(`Job Title`) %>%
       summarise(Salari_Mig = mean(`Salary in USD`, na.rm = TRUE)) %>%
       slice_max(order_by = Salari_Mig, n = 10) %>%
+      arrange(Salari_Mig) %>%
       plot_ly(
-        x = ~Salari_Mig,
         y = ~reorder(`Job Title`, Salari_Mig),
-        type = "bar",
-        orientation = "h",
-        marker = list(color = "darkorange")
+        x = ~Salari_Mig,
+        type = 'bar',
+        orientation = 'h',
+        marker = list(color = 'rgba(255, 140, 0, 0.8)',
+                      line = list(color = 'rgba(255, 140, 0, 1.0)', width = 1)),
+        text = ~paste0("$", formatC(Salari_Mig, format = "f", big.mark = ",", digits = 0)),
+        hoverinfo = 'text+y'
       ) %>%
       layout(
-        title = "Top 10 treballs millor pagats (segons filtre)",
-        xaxis = list(title = "Salari mitjà (USD)"),
-        yaxis = list(title = "Títol del lloc de treball")
+        title = list(text = "Top 10 feines més ben pagades (segons filtre)", font = list(size = 20)),
+        xaxis = list(title = "Salari mitjà (USD)", tickfont = list(size = 12)),
+        yaxis = list(title = "Títol del lloc de treball", tickfont = list(size = 12))
       )
   })
   
-  # Tabla resumen de estadísticas
+  output$dist_plot <- renderPlotly({
+    plot_ly(
+      filtered_data(),
+      x = ~`Salary in USD`,
+      type = "histogram",
+      nbinsx = 30,
+      marker = list(color = 'rgba(142, 68, 173, 0.8)',
+                    line = list(color = 'rgba(142, 68, 173, 1.0)', width = 1))
+    ) %>%
+      layout(title = "Distribució del salari (USD)",
+             xaxis = list(title = "Salari"),
+             yaxis = list(title = "Comptatge"))
+  })
+  
+  output$comparativa_plot <- renderPlotly({
+    mean_global <- mean(df$`Salary in USD`, na.rm = TRUE)
+    mean_filtrado <- mean(filtered_data()$`Salary in USD`, na.rm = TRUE)
+    
+    plot_ly(
+      x = c("Global", "Filtrat"),
+      y = c(mean_global, mean_filtrado),
+      type = "bar",
+      marker = list(color = c("rgba(127, 140, 141, 0.8)", "rgba(39, 174, 96, 0.8)"),
+                    line = list(color = c("rgba(127, 140, 141, 1.0)", "rgba(39, 174, 96, 1.0)"), width = 1)),
+      text = c(dollar(mean_global), dollar(mean_filtrado)),
+      hoverinfo = "text+x"
+    ) %>%
+      layout(title = "Comparació del salari mitjà",
+             xaxis = list(title = ""),
+             yaxis = list(title = "Salari mitjà (USD)", rangemode = "tozero"))
+  })
+  
   output$summary_table <- renderDataTable({
     filtered_data() %>%
       summarise(
         Observacions = n(),
-        Salari_Mitja = round(mean(`Salary in USD`), 2),
-        Salari_Màxim = max(`Salary in USD`),
-        Salari_Mínim = min(`Salary in USD`)
+        Salari_Mitja = dollar(mean(`Salary in USD`, na.rm = TRUE)),
+        Salari_Màxim = dollar(max(`Salary in USD`, na.rm = TRUE)),
+        Salari_Mínim = dollar(min(`Salary in USD`, na.rm = TRUE))
       )
   })
   
-  # Mejores países recomendados
   output$recom_countries <- renderDataTable({
     filtered_data() %>%
       group_by(`Company Location`) %>%
@@ -122,7 +254,6 @@ server <- function(input, output) {
       slice_head(n = 3)
   })
   
-  # Mejor trabajo
   output$recom_title <- renderPrint({
     best_title <- filtered_data() %>%
       group_by(`Job Title`) %>%
@@ -134,7 +265,35 @@ server <- function(input, output) {
     best_title
   })
   
-  # Recomendación personalizada
+  output$remote_plot <- renderPlotly({
+    df_remote <- filtered_data() %>%
+      count(Teletrabajo)
+    
+    plot_ly(df_remote, labels = ~Teletrabajo, values = ~n, type = 'pie') %>%
+      layout(title = 'Distribució del tipus de treball',
+             showlegend = TRUE,
+             legend = list(orientation = 'h', x = 0.3, y = -0.1))
+  })
+  
+  output$simulated_salary <- renderPrint({
+    data <- df %>%
+      filter((input$sim_exp == "Qualsevol" | `Experience Level` == input$sim_exp),
+             (input$sim_size == "Qualsevol" | `Company Size` == input$sim_size),
+             Teletrabajo == input$sim_remote)
+    
+    if (input$sim_region != "Totes") {
+      data <- data %>% filter(Region == input$sim_region)
+    }
+    
+    mean_salary <- mean(data$`Salary in USD`, na.rm = TRUE)
+    
+    if (is.na(mean_salary)) {
+      "No hi ha dades disponibles per aquesta combinació."
+    } else {
+      paste0("$", formatC(mean_salary, format = "f", digits = 0, big.mark = ","))
+    }
+  })
+  
   output$recom_text <- renderText({
     exp <- input$experience
     size <- input$company_size
@@ -158,7 +317,7 @@ server <- function(input, output) {
     }
   })
   
-}
+  
+} 
 
-# Llançar la aplicació
 shinyApp(ui = ui, server = server)
