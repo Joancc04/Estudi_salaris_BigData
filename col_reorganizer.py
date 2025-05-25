@@ -1,7 +1,12 @@
 import pandas as pd
 
-df = pd.read_csv('cost_of_living.csv')
+df = pd.read_csv('raw_datasets/raw_cost_of_living.csv')
 df = df.iloc[:, [1, 2]]
-df.columns = ['country', 'cost_index']
-df['cost_index'] = (df['cost_index']/100)*5700 # 5700 ma o meno lo que cuesta 1 mes en NYC por persona
-df.to_csv('cost_of_living2.csv', index=False)   # 1700 (cost de vida) + 4000 (alquiler (diavlo))
+df.columns = ['country', 'cost']
+
+month_cost = 1710 # https://www.numbeo.com/cost-of-living/in/New-York
+month_rent = 1736 # https://www.rentcafe.com/average-rent-market-trends/us/
+total = month_rent + month_cost
+
+df['cost'] = (df['cost']/100)*total
+df.to_csv('Cost_of_living.csv', index=False)
