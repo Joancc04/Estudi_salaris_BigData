@@ -18,12 +18,12 @@ df <- read_csv("Data_Science_Salaries.csv")
 # Añadir columna de región y teletrabajo
 df <- df %>% mutate(
   Region = case_when(
-    `Company Location` %in% c("United States", "Canada", "Mexico") ~ "América del Norte",
-    `Company Location` %in% c("Brazil", "Colombia", "Argentina", "Chile") ~ "América del Sur",
-    `Company Location` %in% c("Germany", "France", "United Kingdom", "Netherlands", "Spain", "Italy", "Romania", "Greece") ~ "Europa",
-    `Company Location` %in% c("India", "Vietnam", "Singapore", "China") ~ "Asia",
-    `Company Location` %in% c("Nigeria", "South Africa") ~ "África",
-    `Company Location` %in% c("Australia", "New Zealand") ~ "Oceanía",
+    `Company Location` %in% c('United States', 'Canada', 'Mexico', 'Puerto Rico') ~ "América del Norte",
+    `Company Location` %in% c('Colombia', 'Brazil', 'Argentina') ~ "América del Sur",
+    `Company Location` %in% c('United Kingdom', 'Portugal', 'Ireland', 'Germany', 'Spain', 'Poland', 'France', 'Netherlands', 'Luxembourg', 'Gibraltar', 'Ukraine', 'Slovenia', 'Greece', 'Latvia', 'Italy', 'Estonia', 'Czechia', 'Switzerland', 'Russia', 'Denmark', 'Sweden', 'Finland', 'Austria', 'Belgium', 'Romania') ~ "Europa",
+    `Company Location` %in% c('India', 'Vietnam', 'Philippines', 'Turkey', 'Japan', 'Singapore', 'Pakistan', 'Indonesia', 'Malaysia', 'Israel') ~ "Asia",
+    `Company Location` %in% c('South Africa', 'Nigeria') ~ "África",
+    `Company Location` %in% c('Australia', 'American Samoa') ~ "Oceanía",
     TRUE ~ "Altres"
   ),
   Teletrabajo = if_else(`Company Location` == `Employee Residence`, "Presencial", "Remot")
@@ -51,13 +51,15 @@ ui <- fluidPage(
         wellPanel(
           h4("\U1F50D Filtres", style = "font-weight: bold;"),
           selectInput("experience", "Nivell d'experiència:",
-                      choices = c("Qualsevol", unique(df$`Experience Level`)), selected = "Mid"),
+                      choices = c("Qualsevol", "Entry", "Mid", "Senior", "Executive"), 
+                      selected = "Qualsevol"),
           selectInput("company_size", "Mida de l'empresa:",
-                      choices = c("Qualsevol", unique(df$`Company Size`)), selected = "Medium"),
+                      choices = c("Qualsevol", "Small", "Medium", "Large"), 
+                      selected = "Qualsevol"),
           selectInput("region", "Regió (opcional):",
-                      choices = c("Totes", unique(df$Region)), selected = "Totes"),
+                      choices = c("Totes", sort(unique(df$Region))), selected = "Totes"),
           selectInput("remote", "Modalitat de treball:",
-                      choices = c("Qualsevol", "Remot", "Presencial"), selected = "Qualsevol"),
+                      choices = c("Qualsevol", "Presencial", "Remot"), selected = "Qualsevol"),
           br(),
           downloadButton("download_data", "Descarregar dades filtrades", class = "btn btn-success")
         )
@@ -66,46 +68,34 @@ ui <- fluidPage(
       column(
         width = 9,
         tabsetPanel(
-          tabPanel(tagList(icon("calculator"), span("Simulador de salari")),
-                   br(),
-                   h4("Calcula una estimació del teu salari"),
-                   p("Introdueix les dades següents per obtenir una estimació basada en la mitjana del dataset."),
-                   fluidRow(
-                     column(6,
-                            selectInput("sim_exp", "Nivell d'experiència:", choices = c("Qualsevol", unique(df$`Experience Level`)))),
-                     column(6,
-                            selectInput("sim_size", "Mida de l'empresa:", choices = c("Qualsevol", unique(df$`Company Size`))))
-                   ),
-                   fluidRow(
-                     column(6,
-                            selectInput("sim_remote", "Modalitat de treball:", choices = c("Remot", "Presencial"))),
-                     column(6,
-                            selectInput("sim_region", "Regió:", choices = c("Totes", unique(df$Region))))
-                   ),
-                   br(),
-                   h4("Salari estimat:"),
-                   verbatimTextOutput("simulated_salary")
-          ),
           tabPanel(tagList(icon("info-circle"), span("Inici")),
                    br(),
                    h3("Benvingut/da al panell interactiu de salaris!"),
                    p("Aquesta aplicació t'ajuda a explorar les dades salarials globals per a professionals del món de la ciència de dades.", style = "font-size: 16px;"),
                    p("Utilitza els filtres de l'esquerra per veure les estadístiques personalitzades.", style = "font-size: 16px;")),
+          tabPanel(tagList(icon("calculator"), span("Simulador de salari")),
+                   br(),
+                   h4("Calcula una estimació del teu salari"),
+                   p("Aquesta estimació es basa en els filtres seleccionats a l'esquerra."),
+                   br(),
+                   h4("Salari estimat:"),
+                   verbatimTextOutput("simulated_salary")
+          ),
           tabPanel(tagList(icon("chart-bar"), span("Salari mitjà per país")),
                    br(),
-                   plotlyOutput("salary_plot", height = "600px")),
+                   plotlyOutput("salary_plot", height = "800px")),
           
           tabPanel(tagList(icon("dollar-sign"), span("Treballs millor pagats")),
                    br(),
-                   plotlyOutput("title_plot", height = "600px")),
+                   plotlyOutput("title_plot", height = "800px")),
           
           tabPanel(tagList(icon("chart-area"), span("Distribució salarial")),
                    br(),
-                   plotlyOutput("dist_plot", height = "600px")),
+                   plotlyOutput("dist_plot", height = "800px")),
           
           tabPanel(tagList(icon("balance-scale"), span("Comparació global")),
                    br(),
-                   plotlyOutput("comparativa_plot", height = "600px")),
+                   plotlyOutput("comparativa_plot", height = "800px")),
           
           tabPanel(tagList(icon("pie-chart"), span("Remot vs Presencial")),
                    br(),
@@ -177,7 +167,8 @@ server <- function(input, output) {
       layout(
         title = list(text = "Salari mitjà per país", font = list(size = 20)),
         xaxis = list(title = "Salari mitjà (USD)", tickfont = list(size = 12)),
-        yaxis = list(title = "País", tickfont = list(size = 12))
+        yaxis = list(title = "País", tickfont = list(size = 10)),
+        margin = list(t = 30, l = 140)
       )
   })
   
@@ -200,7 +191,8 @@ server <- function(input, output) {
       layout(
         title = list(text = "Top 10 feines més ben pagades (segons filtre)", font = list(size = 20)),
         xaxis = list(title = "Salari mitjà (USD)", tickfont = list(size = 12)),
-        yaxis = list(title = "Títol del lloc de treball", tickfont = list(size = 12))
+        yaxis = list(title = "Títol del lloc de treball", tickfont = list(size = 12)),
+        margin = list(t = 30)
       )
   })
   
@@ -276,23 +268,26 @@ server <- function(input, output) {
   })
   
   output$simulated_salary <- renderPrint({
-    data <- df %>%
-      filter((input$sim_exp == "Qualsevol" | `Experience Level` == input$sim_exp),
-             (input$sim_size == "Qualsevol" | `Company Size` == input$sim_size),
-             Teletrabajo == input$sim_remote)
-    
-    if (input$sim_region != "Totes") {
-      data <- data %>% filter(Region == input$sim_region)
-    }
-    
-    mean_salary <- mean(data$`Salary in USD`, na.rm = TRUE)
-    
-    if (is.na(mean_salary)) {
-      "No hi ha dades disponibles per aquesta combinació."
-    } else {
-      paste0("$", formatC(mean_salary, format = "f", digits = 0, big.mark = ","))
-    }
-  })
+  data <- df %>%
+    filter((input$experience == "Qualsevol" | `Experience Level` == input$experience),
+           (input$company_size == "Qualsevol" | `Company Size` == input$company_size))
+
+  if (!is.null(input$region) && input$region != "Totes") {
+    data <- data %>% filter(Region == input$region)
+  }
+
+  if (!is.null(input$remote) && input$remote != "Qualsevol") {
+    data <- data %>% filter(Teletrabajo == input$remote)
+  }
+
+  if (nrow(data) == 0) {
+    return("No hi ha dades disponibles per aquesta combinació.")
+  }
+
+  mean_salary <- mean(data$`Salary in USD`, na.rm = TRUE)
+
+  paste0("$", formatC(mean_salary, format = "f", digits = 0, big.mark = ","))
+})
   
   output$recom_text <- renderText({
     exp <- input$experience
