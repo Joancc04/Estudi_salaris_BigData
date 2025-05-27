@@ -56,8 +56,13 @@ ui <- fluidPage(
           selectInput("company_size", "Mida de l'empresa:",
                       choices = c("Qualsevol", "Small", "Medium", "Large"), 
                       selected = "Qualsevol"),
-          selectInput("region", "Regió (opcional):",
-                      choices = c("Totes", sort(unique(df$Region))), selected = "Totes"),
+          selectizeInput("region", "Regió:",
+                      choices = c(sort(unique(df$Region))), selected = NULL, multiple = TRUE, options = list(placeholder = 'Totes')),
+          selectizeInput("countries", "Països:",
+               choices = sort(unique(df$`Company Location`)),
+               selected = NULL,
+               multiple = TRUE,
+               options = list(placeholder = 'Tots')),
           selectInput("remote", "Modalitat de treball:",
                       choices = c("Qualsevol", "Presencial", "Remot"), selected = "Qualsevol"),
           br(),
@@ -121,16 +126,44 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   
+  observe({
+  region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
+    df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
+  } else {
+    character(0)
+  }
+
+  available_countries <- setdiff(sort(unique(df$`Company Location`)), region_countries)
+
+  updateSelectizeInput(session, "countries", choices = available_countries, server = TRUE)
+  })
+
   # Filtrado reactivo de dades amb region i modalitat de treball
   filtered_data <- reactive({
     data <- df %>%
       filter((input$experience == "Qualsevol" | `Experience Level` == input$experience),
              (input$company_size == "Qualsevol" | `Company Size` == input$company_size))
     
-    if (input$region != "Totes") {
-      data <- data %>% filter(Region == input$region)
+    # Determinar países a partir de regiones seleccionadas
+    region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
+      df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
+    } else {
+      character(0)
+    }
+
+    # Obtener países seleccionados manualmente
+    selected_countries <- if (!is.null(input$countries) && length(input$countries) > 0) {
+      input$countries
+    } else {
+      character(0)
+    }
+
+    # Lógica combinada
+    if (length(region_countries) > 0 || length(selected_countries) > 0) {
+      valid_countries <- union(region_countries, selected_countries)
+      data <- data %>% filter(`Company Location` %in% valid_countries)
     }
     
     if (input$remote != "Qualsevol") {
@@ -272,9 +305,25 @@ server <- function(input, output) {
     filter((input$experience == "Qualsevol" | `Experience Level` == input$experience),
            (input$company_size == "Qualsevol" | `Company Size` == input$company_size))
 
-  if (!is.null(input$region) && input$region != "Totes") {
-    data <- data %>% filter(Region == input$region)
-  }
+    # Determinar países a partir de regiones seleccionadas
+    region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
+      df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
+    } else {
+      character(0)
+    }
+
+    # Obtener países seleccionados manualmente
+    selected_countries <- if (!is.null(input$countries) && length(input$countries) > 0) {
+      input$countries
+    } else {
+      character(0)
+    }
+
+    # Lógica combinada
+    if (length(region_countries) > 0 || length(selected_countries) > 0) {
+      valid_countries <- union(region_countries, selected_countries)
+      data <- data %>% filter(`Company Location` %in% valid_countries)
+    }
 
   if (!is.null(input$remote) && input$remote != "Qualsevol") {
     data <- data %>% filter(Teletrabajo == input$remote)
