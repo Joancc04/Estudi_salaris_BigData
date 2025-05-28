@@ -49,7 +49,7 @@ ui <- fluidPage(
     br(),
     div(
       style = "text-align: center;",
-      h1("\U1F4BC Explorador de Salarios en el Sector de les Dades", style = "font-weight: 700;"),
+      h1("\U1F4BC Explorador de Salaris en el Sector de les Dades", style = "font-weight: 700;"),
       p("Una aplicació interactiva per analitzar salaris globals en el sector de la ciència de dades.", style = "font-size: 18px;")
     ),
     br(),
