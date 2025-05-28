@@ -15,22 +15,28 @@ library(shinyWidgets)
 
 # Cargar el dataset
 # df <- read_csv("Data_Science_Salaries.csv")
-df <- read_csv("Salaries_anual.csv")
+df <- read_csv("Salaries_anual_clean.csv")
 
 # Añadir columna de región y teletrabajo
 df <- df %>% mutate(
   Region = case_when(
     `Company Location` %in% c('United States', 'Canada', 'Mexico', 'Puerto Rico') ~ "América del Norte",
     `Company Location` %in% c('Colombia', 'Brazil', 'Argentina') ~ "América del Sur",
-    `Company Location` %in% c('United Kingdom', 'Portugal', 'Ireland', 'Germany', 'Spain', 'Poland', 'France', 'Netherlands', 'Luxembourg', 'Gibraltar', 'Ukraine', 'Slovenia', 'Greece', 'Latvia', 'Italy', 'Estonia', 'Czechia', 'Switzerland', 'Russia', 'Denmark', 'Sweden', 'Finland', 'Austria', 'Belgium', 'Romania') ~ "Europa",
-    `Company Location` %in% c('India', 'Vietnam', 'Philippines', 'Turkey', 'Japan', 'Singapore', 'Pakistan', 'Indonesia', 'Malaysia', 'Israel') ~ "Asia",
-    `Company Location` %in% c('South Africa', 'Nigeria') ~ "África",
-    `Company Location` %in% c('Australia', 'American Samoa') ~ "Oceanía",
+    `Company Location` %in% c('United Kingdom', 'Portugal', 'Ireland', 'Germany', 'Spain', 'Poland', 'France', 'Netherlands', 'Luxembourg', 'Gibraltar', 'Ukraine', 'Slovenia', 'Greece', 'Latvia', 'Italy', 'Estonia', 'Czechia', 'Switzerland', 'Russia', 'Denmark', 'Sweden', 'Finland', 'Austria', 'Belgium', 'Romania', 'Lithuania', 'Norway', 'Russian Federation', 'Croatia', 'Hungary') ~ "Europa",
+    `Company Location` %in% c('India', 'Vietnam', 'Philippines', 'Turkey', 'Japan', 'Singapore', 'Pakistan', 'Indonesia', 'Malaysia', 'Israel', 'Saudi Arabia', 'United Arab Emirates', 'South Korea', 'Thailand') ~ "Asia",
+    `Company Location` %in% c('South Africa', 'Nigeria', 'Kenya', 'Ghana') ~ "África",
+    `Company Location` %in% c('Australia', 'American Samoa', 'New Zealand') ~ "Oceanía",
     TRUE ~ "Altres"
   ),
   Teletrabajo = if_else(`Company Location` == `Employee Residence`, "Presencial", "Remot"),
   SalariDisponible = `Salary in USD` - cost
 )
+
+# Base sin outliers
+base_data <- df %>% 
+  group_by(`Company Location`) %>% 
+  filter(n() >= 5) %>% 
+  ungroup()
 
 # UI mejorado con layout moderno
 theme_config <- bs_theme(bootswatch = "flatly", base_font = font_google("Roboto"))
@@ -77,10 +83,17 @@ ui <- fluidPage(
         width = 9,
         tabsetPanel(
           tabPanel(tagList(icon("info-circle"), span("Inici")),
-                   br(),
-                   h3("Benvingut/da al panell interactiu de salaris!"),
-                   p("Aquesta aplicació t'ajuda a explorar les dades salarials globals per a professionals del món de la ciència de dades.", style = "font-size: 16px;"),
-                   p("Utilitza els filtres de l'esquerra per veure les estadístiques personalitzades.", style = "font-size: 16px;")),
+            br(),
+            h3("Benvingut/da al panell interactiu de salaris!"),
+            p("Aquesta aplicació t'ajuda a explorar les dades salarials globals per a professionals del món de la ciència de dades.", style = "font-size: 16px;"),
+            p("Utilitza els filtres de l'esquerra per veure estadístiques personalitzades sobre salaris, costos de vida i treball remot.", style = "font-size: 16px;"),
+            p(tags$b("Consell útil:"), " Pots fer doble clic sobre qualsevol regió o país seleccionat per eliminar-lo del filtre.", style = "font-size: 15px;"),
+            br(),
+            checkboxInput("remove_outliers", "Eliminar països amb menys de 5 observacions", value = FALSE),
+            conditionalPanel(
+              condition = "input.remove_outliers == true",
+              div(style = "color: red; font-style: italic; font-size: 14px;",
+                  "⚠️ En eliminar els outliers, diversos països desapareixeran i les dades poden no representar tan bé la distribució global."))),
           tabPanel(tagList(icon("calculator"), span("Simulador de salari")),
                    br(),
                    h4("Calcula una estimació del teu salari"),
@@ -257,16 +270,25 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   observe({
+    # Dataset base o filtrado por outliers
+    current_data <- if (isTRUE(input$remove_outliers)) {
+      df %>% group_by(`Company Location`) %>%
+        filter(n() >= 5)
+    } else {
+      df
+    }
+
+    # Obtener los países según las regiones seleccionadas
     region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
-      df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
+      current_data %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
     } else {
       character(0)
     }
 
-    all_countries <- sort(unique(df$`Company Location`))
+    all_countries <- sort(unique(current_data$`Company Location`))
     available_countries <- setdiff(all_countries, region_countries)
 
-    # Preservar selección previa válida
+    # Mantener selección previa válida
     current_selection <- isolate(input$countries)
     valid_selection <- intersect(current_selection, available_countries)
 
@@ -302,7 +324,8 @@ server <- function(input, output, session) {
 
   # Filtrado reactivo de dades amb region i modalitat de treball
   filtered_data <- reactive({
-    data <- df %>%
+    data <- if (input$remove_outliers) base_data else df
+    data <- data %>%
       filter((input$experience == "Qualsevol" | `Experience Level` == input$experience),
              (input$company_size == "Qualsevol" | `Company Size` == input$company_size))
     
@@ -470,39 +493,7 @@ server <- function(input, output, session) {
         ordering = TRUE,
         info = TRUE,
         autoWidth = TRUE
-      ),
-      callback = JS("
-        table.on('draw.dt', function() {
-          table.rows().every(function() {
-            var row = this.node();
-            var $row = $(row);
-            
-            if (!$row.hasClass('clickable')) {
-              $row.addClass('clickable');
-              $row.css('cursor', 'pointer');
-
-              $row.off('dblclick').on('dblclick', function() {
-                var data = table.row(this).data();
-                if (!data) return;
-
-                var id = data[0];
-                console.log('Doble clic en: ' + id);
-
-                Shiny.setInputValue('expand_row', id, {priority: 'event'});
-
-                var tr = $(this);
-                if (tr.hasClass('shown')) {
-                  tr.next('tr.details').remove();
-                  tr.removeClass('shown');
-                } else {
-                  tr.addClass('shown');
-                }
-              });
-            }
-          });
-        });
-      ")
-    ) %>%
+      )) %>%
       formatCurrency(c("Salari_Mitja", "Cost_Vida", "Salari_Disponible", "Salari_Màxim", "Salari_Mínim"), currency = "$")
   })
   

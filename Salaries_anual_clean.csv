@@ -727,7 +727,7 @@ Research Scientist,Full-Time,Senior,Expert,135842,United States,135842,United St
 Research Scientist,Full-Time,Senior,Expert,98794,United States,98794,United States,Medium,2023,0.6848138048910644,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,331640,United States,331640,United States,Medium,2023,2.298840519202306,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,267720,United States,267720,United States,Medium,2023,1.8557640326885816,2,30145.608000000007
-Research Engineer,Full-Time,Senior,Expert,266450,United States,266450,United States,Medium,2023,1.8469607295303772,2,30145.608000000007
+Research Engineer,Full-Time,Senior,Expert,266450,United States,266450,United States,Medium,2023,1.8469607295303767,2,30145.608000000007
 Research Engineer,Full-Time,Senior,Expert,177700,United States,177700,United States,Medium,2023,1.2317692686716009,2,30145.608000000007
 Research Engineer,Full-Time,Entry,Junior,350000,United States,350000,United States,Medium,2023,2.426107169583908,0,30145.608000000007
 Research Engineer,Full-Time,Entry,Junior,250000,United States,250000,United States,Medium,2023,1.7329336925599337,0,30145.608000000007
@@ -780,8 +780,8 @@ Data Engineer,Full-Time,Senior,Expert,165000,United States,165000,United States,
 Data Engineer,Full-Time,Senior,Expert,122445,United States,122445,United States,Medium,2023,0.8487562639420043,2,30145.608000000007
 Data Architect,Full-Time,Senior,Expert,208000,Canada,154101,Canada,Medium,2023,1.0681872598287134,2,28284.768000000004
 Data Architect,Full-Time,Senior,Expert,136000,Canada,100758,Canada,Medium,2023,0.6984277319798152,2,28284.768000000004
-Machine Learning Engineer,Full-Time,Mid,Intermediate,84000,Viet Nam,84000,Viet Nam,Medium,2023,0.5822657207001377,1,
-Machine Learning Engineer,Full-Time,Mid,Intermediate,48000,Viet Nam,48000,Viet Nam,Medium,2023,0.3327232689715073,1,
+Machine Learning Engineer,Full-Time,Mid,Intermediate,84000,Vietnam,84000,Vietnam,Medium,2023,0.5822657207001377,1,12736.416
+Machine Learning Engineer,Full-Time,Mid,Intermediate,48000,Vietnam,48000,Vietnam,Medium,2023,0.3327232689715073,1,12736.416
 ML Engineer,Full-Time,Senior,Expert,275000,United States,275000,United States,Medium,2023,1.9062270618159272,2,30145.608000000007
 ML Engineer,Full-Time,Senior,Expert,187000,United States,187000,United States,Medium,2023,1.2962344020348304,2,30145.608000000007
 Research Scientist,Full-Time,Mid,Intermediate,212800,United States,212800,United States,Large,2023,1.4750731591070156,1,30145.608000000007
@@ -962,7 +962,7 @@ Machine Learning Engineer,Full-Time,Senior,Expert,146000,United States,146000,Un
 Data Architect,Full-Time,Senior,Expert,200000,United States,200000,United States,Medium,2023,1.386346954047947,2,30145.608000000007
 Data Architect,Full-Time,Senior,Expert,115000,United States,115000,United States,Medium,2023,0.7971494985775696,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,370000,United States,370000,United States,Medium,2023,2.564741864988702,2,30145.608000000007
-Machine Learning Engineer,Full-Time,Mid,Intermediate,72000,Viet Nam,72000,Viet Nam,Medium,2023,0.4990849034572609,1,
+Machine Learning Engineer,Full-Time,Mid,Intermediate,72000,Vietnam,72000,Vietnam,Medium,2023,0.4990849034572609,1,12736.416
 Business Intelligence Engineer,Full-Time,Mid,Intermediate,185000,United States,185000,United States,Large,2023,1.282370932494351,1,30145.608000000007
 Business Intelligence Engineer,Full-Time,Mid,Intermediate,79600,United States,79600,United States,Large,2023,0.5517660877110829,1,30145.608000000007
 Data Science Consultant,Full-Time,Senior,Expert,125000,United States,125000,United States,Medium,2023,0.8664668462799668,2,30145.608000000007
@@ -1364,7 +1364,7 @@ Data Scientist,Full-Time,Senior,Expert,200000,United States,200000,United States
 Data Scientist,Full-Time,Senior,Expert,120000,United States,120000,United States,Medium,2023,0.8318081724287683,2,30145.608000000007
 Data Engineer,Full-Time,Mid,Intermediate,106700,United States,106700,United States,Medium,2023,0.7396160999845798,1,30145.608000000007
 Data Engineer,Full-Time,Mid,Intermediate,57700,United States,57700,United States,Medium,2023,0.3999610962428327,1,30145.608000000007
-Machine Learning Engineer,Full-Time,Senior,Expert,266400,United States,266400,United States,Medium,2023,1.8466141427918652,2,30145.608000000007
+Machine Learning Engineer,Full-Time,Senior,Expert,266400,United States,266400,United States,Medium,2023,1.8466141427918648,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,173300,United States,173300,United States,Medium,2023,1.201269635682546,2,30145.608000000007
 Business Intelligence Engineer,Full-Time,Senior,Expert,165600,United States,165600,United States,Large,2023,1.1478952779517002,2,30145.608000000007
 Business Intelligence Engineer,Full-Time,Senior,Expert,65800,United States,65800,United States,Large,2023,0.4561081478817745,2,30145.608000000007
@@ -1737,7 +1737,7 @@ BI Developer,Full-Time,Entry,Junior,57000,United States,57000,United States,Medi
 Data Engineer,Full-Time,Senior,Expert,190400,United States,190400,United States,Medium,2023,1.3198023002536456,2,30145.608000000007
 Data Strategist,Full-Time,Senior,Expert,119636,United States,119636,United States,Medium,2023,0.829285020972401,2,30145.608000000007
 Data Strategist,Full-Time,Senior,Expert,70374,United States,70374,United States,Medium,2023,0.4878139027208511,2,30145.608000000007
-Data Engineer,Full-Time,Senior,Expert,304750,United States,304750,United States,Medium,2023,2.1124461712305598,2,30145.608000000007
+Data Engineer,Full-Time,Senior,Expert,304750,United States,304750,United States,Medium,2023,2.11244617123056,2,30145.608000000007
 Data Analyst,Full-Time,Mid,Intermediate,98873,United States,98873,United States,Medium,2023,0.6853614119379133,1,30145.608000000007
 Data Analyst,Full-Time,Mid,Intermediate,58161,United States,58161,United States,Medium,2023,0.4031566259719132,1,30145.608000000007
 Analytics Engineer,Full-Time,Senior,Expert,138000,United States,138000,United States,Medium,2023,0.9565793982930836,2,30145.608000000007
@@ -1779,10 +1779,9 @@ Data Scientist,Full-Time,Senior,Expert,168000,United States,168000,United States
 Data Scientist,Full-Time,Entry,Junior,105000,United States,105000,United States,Medium,2023,0.7278321508751722,0,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,243000,Canada,243000,Canada,Medium,2023,1.6844115491682556,2,28284.768000000004
 Data Engineer,Full-Time,Senior,Expert,152000,Canada,152000,Canada,Medium,2023,1.0536236850764398,2,28284.768000000004
-Business Data Analyst,Full-Time,Senior,Expert,65000,Gibraltar,79976,Spain,Large,2023,0.5543724199846931,2,20014.368
 Business Intelligence Analyst,Full-Time,Senior,Expert,115600,United States,115600,United States,Medium,2023,0.8013085394397134,2,30145.608000000007
 Business Intelligence Analyst,Full-Time,Senior,Expert,79700,United States,79700,United States,Medium,2023,0.5524592611881068,2,30145.608000000007
-Applied Scientist,Full-Time,Entry,Junior,281700,United States,281700,United States,Medium,2023,1.9526696847765332,0,30145.608000000007
+Applied Scientist,Full-Time,Entry,Junior,281700,United States,281700,United States,Medium,2023,1.9526696847765328,0,30145.608000000007
 Applied Scientist,Full-Time,Entry,Junior,141100,United States,141100,United States,Medium,2023,0.9780677760808266,0,30145.608000000007
 Data Specialist,Full-Time,Senior,Expert,173100,United States,173100,United States,Medium,2023,1.1998832887284985,2,30145.608000000007
 Data Specialist,Full-Time,Senior,Expert,86900,United States,86900,United States,Medium,2023,0.6023677515338329,2,30145.608000000007
@@ -2249,7 +2248,6 @@ Research Engineer,Full-Time,Senior,Expert,172000,United States,172000,United Sta
 Research Engineer,Full-Time,Senior,Expert,125000,United States,125000,United States,Medium,2023,0.8664668462799668,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,139600,United States,139600,United States,Medium,2023,0.9676701739254672,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,85700,United States,85700,United States,Medium,2023,0.5940496698095453,2,30145.608000000007
-Azure Data Engineer,Full-Time,Entry,Junior,100000,Mauritius,100000,Mauritius,Small,2020,0.6931734770239735,0,16458.095999999998
 Machine Learning Engineer,Full-Time,Senior,Expert,330000,United States,330000,United States,Medium,2023,2.2874724741791126,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,188000,United States,188000,United States,Medium,2023,1.3031661368050702,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,238000,Canada,238000,Canada,Medium,2023,1.649752875317057,2,28284.768000000004
@@ -2401,7 +2399,7 @@ Data Architect,Full-Time,Senior,Expert,153000,United States,153000,United States
 Machine Learning Scientist,Full-Time,Senior,Expert,171000,United Kingdom,210398,United Kingdom,Medium,2023,1.4584231321889,2,26341.224
 Machine Learning Scientist,Full-Time,Senior,Expert,120000,United Kingdom,147648,United Kingdom,Medium,2023,1.0234567753563564,2,26341.224
 Machine Learning Operations Engineer,Full-Time,Senior,Expert,60000,United States,60000,Thailand,Large,2023,0.4159040862143841,2,14886.72
-AI Scientist,Full-Time,Mid,Intermediate,54000,"Korea, Republic of",54000,"Korea, Republic of",Small,2023,0.3743136775929457,1,
+AI Scientist,Full-Time,Mid,Intermediate,54000,South Korea,54000,South Korea,Small,2023,0.3743136775929457,1,26630.688
 Data Engineer,Full-Time,Senior,Expert,202000,United States,202000,United States,Medium,2023,1.4002104235884263,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,132000,United States,132000,United States,Medium,2023,0.914988989671645,2,30145.608000000007
 Data Analyst,Full-Time,Mid,Intermediate,60000,United Kingdom,73824,United Kingdom,Medium,2023,0.5117283876781782,1,26341.224
@@ -2710,7 +2708,6 @@ Decision Scientist,Full-Time,Senior,Expert,182500,United States,182500,United St
 Decision Scientist,Full-Time,Senior,Expert,135000,United States,135000,United States,Medium,2023,0.9357841939823642,2,30145.608000000007
 Business Data Analyst,Contract,Mid,Intermediate,35000,United States,35000,Philippines,Medium,2023,0.2426107169583907,1,13894.272
 Data Engineer,Full-Time,Executive,Director,94000,United States,94000,United States,Medium,2023,0.6515830684025351,3,30145.608000000007
-AI Engineer,Full-Time,Mid,Intermediate,300000,Qatar,300000,Qatar,Medium,2023,2.0795204310719204,1,22743.6
 Data Strategist,Full-Time,Senior,Expert,91000,United States,91000,United States,Medium,2023,0.6307878640918159,2,30145.608000000007
 Data Strategist,Full-Time,Senior,Expert,86000,United States,86000,United States,Medium,2023,0.5961291902406172,2,30145.608000000007
 Business Data Analyst,Full-Time,Senior,Expert,180000,United States,180000,United States,Large,2023,1.2477122586431524,2,30145.608000000007
@@ -2721,7 +2718,7 @@ Research Scientist,Full-Time,Entry,Junior,162170,United States,162170,United Sta
 Data Analyst,Full-Time,Entry,Junior,67500,United States,67500,United States,Medium,2023,0.4678920969911821,0,30145.608000000007
 Data Engineer,Full-Time,Mid,Intermediate,70000,Canada,86128,Canada,Medium,2023,0.5970164522912079,1,28284.768000000004
 Data Engineer,Full-Time,Mid,Intermediate,50000,Canada,61520,Canada,Medium,2023,0.4264403230651485,1,28284.768000000004
-Data Scientist,Full-Time,Senior,Expert,265000,United States,265000,United States,Medium,2023,1.8369097141135295,2,30145.608000000007
+Data Scientist,Full-Time,Senior,Expert,265000,United States,265000,United States,Medium,2023,1.836909714113529,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,143000,United States,143000,United States,Medium,2023,0.9912380721442822,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,126277,United States,126277,United States,Medium,2023,0.8753186715815631,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,224500,United States,224500,United States,Medium,2023,1.5561744559188206,2,30145.608000000007
@@ -2831,7 +2828,7 @@ Analytics Engineer,Full-Time,Senior,Expert,207611,United States,207611,United St
 Analytics Engineer,Full-Time,Senior,Expert,127876,United States,127876,United States,Medium,2023,0.8864025154791764,2,30145.608000000007
 Research Engineer,Full-Time,Senior,Expert,225000,United States,225000,United States,Medium,2023,1.5596403233039404,2,30145.608000000007
 Research Engineer,Full-Time,Senior,Expert,168000,United States,168000,United States,Medium,2023,1.1645314414002754,2,30145.608000000007
-Data Engineer,Full-Time,Senior,Expert,280600,United States,280600,United States,Medium,2023,1.9450447765292695,2,30145.608000000007
+Data Engineer,Full-Time,Senior,Expert,280600,United States,280600,United States,Medium,2023,1.945044776529269,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,158600,United States,158600,United States,Medium,2023,1.099373134560022,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,283780,United States,283780,United States,Medium,2023,1.967087693098632,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,218540,United States,218540,United States,Medium,2023,1.5148613166881917,2,30145.608000000007
@@ -3056,7 +3053,7 @@ Data Engineer,Full-Time,Executive,Director,205785,United Kingdom,205785,United K
 Data Engineer,Full-Time,Executive,Director,123471,United Kingdom,123471,United Kingdom,Medium,2023,0.8558682238162704,3,26341.224
 Data Science Manager,Full-Time,Senior,Expert,299500,United States,299500,United States,Medium,2023,2.076054563686801,2,30145.608000000007
 Data Science Manager,Full-Time,Senior,Expert,245100,United States,245100,United States,Medium,2023,1.6989681921857591,2,30145.608000000007
-AI Programmer,Full-Time,Entry,Junior,40000,"Korea, Republic of",40000,"Korea, Republic of",Small,2023,0.2772693908095894,0,
+AI Programmer,Full-Time,Entry,Junior,40000,South Korea,40000,South Korea,Small,2023,0.2772693908095894,0,26630.688
 Data Scientist,Full-Time,Senior,Expert,66000,Spain,71259,Spain,Medium,2023,0.4939484879925133,2,20014.368
 ML Engineer,Full-Time,Senior,Expert,290000,United States,290000,United States,Medium,2023,2.010203083369523,2,30145.608000000007
 ML Engineer,Full-Time,Senior,Expert,226000,United States,226000,United States,Medium,2023,1.5665720580741802,2,30145.608000000007
@@ -3321,7 +3318,6 @@ Data Scientist,Full-Time,Senior,Expert,167850,United States,167850,United States
 Data Scientist,Full-Time,Senior,Expert,222750,United States,222750,United States,Medium,2023,1.544043920070901,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,182250,United States,182250,United States,Medium,2023,1.2633086618761915,2,30145.608000000007
 Data Science Engineer,Full-Time,Entry,Junior,95000,Switzerland,104024,Switzerland,Small,2023,0.7210667777394182,0,46396.944
-Data Scientist,Full-Time,Mid,Intermediate,47000,Andorra,50745,Andorra,Small,2023,0.3517508809158153,1,
 Machine Learning Engineer,Full-Time,Senior,Expert,148594,United States,148594,United States,Medium,2023,1.0300141964490033,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,140250,United States,140250,United States,Medium,2023,0.9721758015261228,2,30145.608000000007
 Data Analytics Manager,Full-Time,Senior,Expert,254500,United States,254500,United States,Large,2023,1.7641264990260126,2,30145.608000000007
@@ -3355,7 +3351,6 @@ Data Specialist,Full-Time,Senior,Expert,85000,United States,85000,United States,
 Data Specialist,Full-Time,Senior,Expert,70000,United States,70000,United States,Medium,2023,0.4852214339167814,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,120000,United Kingdom,147648,United Kingdom,Medium,2023,1.0234567753563564,2,26341.224
 Machine Learning Engineer,Full-Time,Senior,Expert,144800,United States,144800,United States,Medium,2023,1.0037151947307137,2,30145.608000000007
-Data Scientist,Full-Time,Entry,Junior,16000,Ecuador,16000,Ecuador,Large,2023,0.1109077563238357,0,13894.272
 Data Engineer,Full-Time,Mid,Intermediate,27000,Portugal,27000,Peru,Small,2023,0.1871568387964728,1,12777.768
 Data Manager,Full-Time,Executive,Director,72000,Mexico,72000,Mexico,Small,2023,0.4990849034572609,3,18112.176
 Data Engineer,Full-Time,Senior,Expert,172900,United States,172900,United States,Medium,2023,1.1984969417744502,2,30145.608000000007
@@ -3436,7 +3431,7 @@ Research Scientist,Full-Time,Mid,Intermediate,102000,United States,102000,United
 Research Scientist,Full-Time,Senior,Expert,374000,United States,374000,United States,Medium,2023,2.592468804069661,2,30145.608000000007
 Research Scientist,Full-Time,Senior,Expert,197500,United States,197500,United States,Medium,2023,1.3690176171223476,2,30145.608000000007
 Applied Scientist,Full-Time,Mid,Intermediate,20000,United States,20000,Nigeria,Large,2023,0.1386346954047947,1,7980.936
-Data Science Engineer,Full-Time,Senior,Expert,266450,United States,266450,United States,Medium,2023,1.8469607295303772,2,30145.608000000007
+Data Science Engineer,Full-Time,Senior,Expert,266450,United States,266450,United States,Medium,2023,1.8469607295303767,2,30145.608000000007
 Data Science Engineer,Full-Time,Senior,Expert,177700,United States,177700,United States,Medium,2023,1.2317692686716009,2,30145.608000000007
 Data Operations Specialist,Full-Time,Senior,Expert,55720,United States,55720,United States,Medium,2023,0.386236261397758,2,30145.608000000007
 Data Operations Specialist,Full-Time,Senior,Expert,50700,United States,50700,United States,Medium,2023,0.3514389528511545,2,30145.608000000007
@@ -3484,7 +3479,7 @@ ML Engineer,Full-Time,Senior,Expert,192000,United States,192000,United States,Me
 ML Engineer,Full-Time,Senior,Expert,164000,United States,164000,United States,Medium,2023,1.1368045023193163,2,30145.608000000007
 Business Intelligence Engineer,Full-Time,Senior,Expert,150000,United States,150000,United States,Medium,2023,1.0397602155359602,2,30145.608000000007
 Business Intelligence Engineer,Full-Time,Senior,Expert,141000,United States,141000,United States,Medium,2023,0.9773746026038026,2,30145.608000000007
-Analytics Engineer,Full-Time,Senior,Expert,267000,United States,267000,United States,Medium,2023,1.8507731836540091,2,30145.608000000007
+Analytics Engineer,Full-Time,Senior,Expert,267000,United States,267000,United States,Medium,2023,1.850773183654009,2,30145.608000000007
 Research Scientist,Full-Time,Senior,Expert,147100,United States,147100,United States,Medium,2023,1.019658184702265,2,30145.608000000007
 Research Scientist,Full-Time,Senior,Expert,90700,United States,90700,United States,Medium,2023,0.628708343660744,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,72000,United States,72000,United States,Medium,2023,0.4990849034572609,2,30145.608000000007
@@ -3516,7 +3511,7 @@ Data Scientist,Full-Time,Executive,Director,1050000,Norway,100416,Norway,Small,2
 Data Engineer,Full-Time,Entry,Junior,38000,Spain,41027,Spain,Large,2023,0.2843882824186256,0,20014.368
 Machine Learning Engineer,Full-Time,Senior,Expert,155000,United States,155000,United States,Medium,2023,1.074418889387159,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,100000,United States,100000,United States,Medium,2023,0.6931734770239735,2,30145.608000000007
-Data Architect,Full-Time,Senior,Expert,280100,United States,280100,United States,Medium,2023,1.9415789091441495,2,30145.608000000007
+Data Architect,Full-Time,Senior,Expert,280100,United States,280100,United States,Medium,2023,1.941578909144149,2,30145.608000000007
 Data Architect,Full-Time,Senior,Expert,168100,United States,168100,United States,Medium,2023,1.1652246148772996,2,30145.608000000007
 Machine Learning Scientist,Full-Time,Senior,Expert,120000,United States,120000,United States,Medium,2023,0.8318081724287683,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,149040,United States,149040,United States,Medium,2023,1.0331057501565302,2,30145.608000000007
@@ -3743,7 +3738,7 @@ Data Operations Analyst,Full-Time,Senior,Expert,144000,United Kingdom,144000,Uni
 Data Operations Analyst,Full-Time,Senior,Expert,77000,United Kingdom,77000,United Kingdom,Medium,2023,0.5337435773084596,2,26341.224
 Data Modeler,Full-Time,Mid,Intermediate,90000,United Kingdom,110736,United Kingdom,Medium,2023,0.7675925815172673,1,26341.224
 Data Modeler,Full-Time,Mid,Intermediate,45000,United Kingdom,55368,United Kingdom,Medium,2023,0.3837962907586336,1,26341.224
-Data Engineer,Full-Time,Senior,Expert,265000,United States,265000,United States,Medium,2023,1.8369097141135295,2,30145.608000000007
+Data Engineer,Full-Time,Senior,Expert,265000,United States,265000,United States,Medium,2023,1.836909714113529,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,217000,United States,217000,United States,Medium,2023,1.5041864451420226,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,177300,United Kingdom,177300,United Kingdom,Medium,2023,1.228996574763505,2,26341.224
 Data Scientist,Full-Time,Senior,Expert,136300,United Kingdom,136300,United Kingdom,Medium,2023,0.944795449183676,2,26341.224
@@ -3861,7 +3856,6 @@ Data Engineer,Full-Time,Senior,Expert,237000,United States,237000,United States,
 Data Engineer,Full-Time,Senior,Expert,201450,United States,201450,United States,Medium,2023,1.3963979694647946,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,193500,United States,193500,United States,Medium,2023,1.341290678041389,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,139000,United States,139000,United States,Medium,2023,0.9635111330633233,2,30145.608000000007
-Data Scientist,Full-Time,Mid,Intermediate,510000,Hong Kong,65058,Hong Kong,Large,2023,0.4509648006822567,1,
 Machine Learning Engineer,Full-Time,Senior,Expert,150000,United States,150000,Portugal,Medium,2023,1.0397602155359602,2,19270.032
 Applied Machine Learning Engineer,Full-Time,Mid,Intermediate,65000,Germany,70179,India,Small,2023,0.4864622144406543,1,9180.144
 Machine Learning Engineer,Full-Time,Mid,Intermediate,90000,Netherlands,97171,Netherlands,Large,2023,0.6735635993589653,1,26589.336000000003
@@ -3896,8 +3890,6 @@ Data Analyst,Full-Time,Mid,Intermediate,38000,United Kingdom,46755,United Kingdo
 Data Analyst,Full-Time,Mid,Intermediate,35000,United Kingdom,43064,United Kingdom,Medium,2023,0.2985082261456039,1,26341.224
 Data Analyst,Full-Time,Senior,Expert,168400,United States,168400,United States,Medium,2023,1.1673041353083713,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,105200,United States,105200,United States,Medium,2023,0.7292184978292201,2,30145.608000000007
-Data Analyst,Full-Time,Senior,Expert,45000,Central African Republic,55368,Central African Republic,Medium,2023,0.3837962907586336,2,
-Data Analyst,Full-Time,Senior,Expert,35000,Central African Republic,43064,Central African Republic,Medium,2023,0.2985082261456039,2,
 Data Scientist,Full-Time,Mid,Intermediate,55000,United Kingdom,67672,United Kingdom,Medium,2023,0.4690843553716634,1,26341.224
 Staff Data Analyst,Full-Time,Executive,Director,15000,Canada,15000,Nigeria,Medium,2020,0.103976021553596,3,7980.936
 ETL Engineer,Full-Time,Mid,Intermediate,70000,United Kingdom,86128,United Kingdom,Medium,2023,0.5970164522912079,1,26341.224
@@ -4037,7 +4029,7 @@ Data Analyst,Full-Time,Mid,Intermediate,154000,United States,154000,United State
 Data Analyst,Full-Time,Mid,Intermediate,143000,United States,143000,United States,Medium,2023,0.9912380721442822,1,30145.608000000007
 Data Scientist,Full-Time,Entry,Junior,190000,United States,190000,United States,Medium,2023,1.3170296063455498,0,30145.608000000007
 Data Scientist,Full-Time,Entry,Junior,120000,United States,120000,United States,Medium,2023,0.8318081724287683,0,30145.608000000007
-Data Engineer,Full-Time,Executive,Director,265000,United States,265000,United States,Medium,2023,1.8369097141135295,3,30145.608000000007
+Data Engineer,Full-Time,Executive,Director,265000,United States,265000,United States,Medium,2023,1.836909714113529,3,30145.608000000007
 Data Engineer,Full-Time,Executive,Director,235000,United States,235000,United States,Medium,2023,1.6289576710063378,3,30145.608000000007
 Data Scientist,Full-Time,Entry,Junior,112000,Switzerland,122638,Switzerland,Large,2023,0.8500940887526607,0,46396.944
 Data Scientist,Full-Time,Mid,Intermediate,70000,Germany,73546,Germany,Medium,2022,0.5098013654120516,1,25927.704
@@ -4367,7 +4359,6 @@ Data Engineer,Full-Time,Senior,Expert,94000,Canada,94000,Canada,Medium,2023,0.65
 Data Scientist,Full-Time,Entry,Junior,124234,United States,124234,United States,Medium,2023,0.8611571374459632,0,30145.608000000007
 Data Scientist,Full-Time,Entry,Junior,74540,United States,74540,United States,Medium,2023,0.5166915097736698,0,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,80000,France,84053,France,Large,2022,0.5826331026429604,2,27292.32
-Machine Learning Engineer,Full-Time,Mid,Intermediate,50000,Armenia,50000,Armenia,Small,2023,0.3465867385119867,1,15961.872
 Data Analyst,Full-Time,Senior,Expert,141290,United States,141290,United States,Medium,2023,0.979384805687172,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,74178,United States,74178,United States,Medium,2023,0.514182221786843,2,30145.608000000007
 Data Engineer,Full-Time,Senior,Expert,107500,United States,107500,United States,Medium,2023,0.7451614878007715,2,30145.608000000007
@@ -4377,7 +4368,6 @@ BI Analyst,Full-Time,Senior,Expert,110000,United States,110000,United States,Med
 ML Engineer,Full-Time,Senior,Expert,200000,United States,200000,United States,Medium,2023,1.386346954047947,2,30145.608000000007
 ML Engineer,Full-Time,Senior,Expert,135000,United States,135000,United States,Medium,2023,0.9357841939823642,2,30145.608000000007
 Business Data Analyst,Full-Time,Entry,Junior,48000,United States,48000,United States,Large,2022,0.3327232689715073,0,30145.608000000007
-AI Developer,Full-Time,Entry,Junior,120000,Bosnia and Herzegovina,120000,Bosnia and Herzegovina,Small,2023,0.8318081724287683,0,
 Computer Vision Engineer,Full-Time,Senior,Expert,200000,United States,200000,United States,Small,2023,1.386346954047947,2,30145.608000000007
 Applied Data Scientist,Full-Time,Mid,Intermediate,80000,Kenya,80000,Kenya,Small,2023,0.5545387816191788,1,10255.295999999998
 Data Analytics Lead,Full-Time,Mid,Intermediate,1440000,Singapore,17511,India,Medium,2023,0.121381607561668,1,9180.144
@@ -4772,7 +4762,6 @@ Deep Learning Engineer,Full-Time,Mid,Intermediate,40000,United Kingdom,49253,Uni
 Data Engineer,Full-Time,Senior,Expert,200000,United States,200000,United States,Medium,2022,1.386346954047947,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,198800,United States,198800,United States,Medium,2022,1.3780288723236591,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,122600,United States,122600,United States,Medium,2022,0.8498306828313915,2,30145.608000000007
-Machine Learning Engineer,Freelance,Entry,Junior,100000,"Iran, Islamic Republic of",100000,"Iran, Islamic Republic of",Medium,2022,0.6931734770239735,0,
 BI Data Analyst,Full-Time,Mid,Intermediate,100000,France,105066,France,Medium,2022,0.7282896453700081,1,27292.32
 Analytics Engineer,Full-Time,Mid,Intermediate,85000,United Kingdom,104663,United Kingdom,Medium,2022,0.7254961562576014,1,26341.224
 Analytics Engineer,Full-Time,Mid,Intermediate,60000,United Kingdom,73880,United Kingdom,Medium,2022,0.5121165648253116,1,26341.224
@@ -4813,7 +4802,6 @@ Data Scientist,Full-Time,Senior,Expert,208000,United States,208000,United States
 Data Scientist,Full-Time,Senior,Expert,127000,United States,127000,United States,Medium,2022,0.8803303158204464,2,30145.608000000007
 Research Scientist,Full-Time,Senior,Expert,300000,United States,300000,United States,Medium,2022,2.0795204310719204,2,30145.608000000007
 Research Scientist,Full-Time,Senior,Expert,196000,United States,196000,United States,Medium,2022,1.358620014966988,2,30145.608000000007
-Autonomous Vehicle Technician,Freelance,Mid,Intermediate,45555,Bahamas,45555,American Samoa,Medium,2021,0.3157751774582711,1,
 Data Scientist,Full-Time,Senior,Expert,205000,United States,205000,United States,Medium,2022,1.4210056278991456,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,185000,United States,185000,United States,Medium,2022,1.282370932494351,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,247500,United States,247500,United States,Medium,2022,1.7156043556343343,2,30145.608000000007
@@ -5259,7 +5247,6 @@ Machine Learning Developer,Full-Time,Entry,Junior,180000,United States,180000,Un
 Data Scientist,Full-Time,Mid,Intermediate,153000,United States,153000,United States,Large,2022,1.0605554198466796,1,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,150075,United States,150075,United States,Medium,2022,1.040280095643728,2,30145.608000000007
 Data Analyst,Full-Time,Senior,Expert,110925,United States,110925,United States,Medium,2022,0.7689026793888426,2,30145.608000000007
-Machine Learning Scientist,Full-Time,Mid,Intermediate,22800,Egypt,22800,Egypt,Medium,2022,0.1580435527614659,1,12033.432000000004
 Data Analyst,Full-Time,Entry,Junior,20000,Portugal,22809,Portugal,Medium,2020,0.1581059383743981,0,19270.032
 Data Analyst,Full-Time,Entry,Junior,15000,Indonesia,15000,Indonesia,Large,2022,0.103976021553596,0,11785.32
 Data Science Manager,Full-Time,Senior,Expert,193000,Australia,133766,Australia,Large,2022,0.9272304332758884,2,30104.256
@@ -5391,7 +5378,7 @@ Data Analyst,Full-Time,Mid,Intermediate,85000,Canada,85000,Canada,Medium,2022,0.
 Data Analyst,Full-Time,Mid,Intermediate,75000,Canada,75000,Canada,Medium,2022,0.5198801077679801,1,28284.768000000004
 Machine Learning Engineer,Full-Time,Senior,Expert,214000,United States,214000,United States,Medium,2022,1.4833912408313032,2,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,192600,United States,192600,United States,Medium,2022,1.335052116748173,2,30145.608000000007
-Data Architect,Full-Time,Senior,Expert,266400,United States,266400,United States,Medium,2022,1.8466141427918652,2,30145.608000000007
+Data Architect,Full-Time,Senior,Expert,266400,United States,266400,United States,Medium,2022,1.8466141427918648,2,30145.608000000007
 Data Architect,Full-Time,Senior,Expert,213120,United States,213120,United States,Medium,2022,1.4772913142334922,2,30145.608000000007
 Data Scientist,Full-Time,Mid,Intermediate,141300,United States,141300,United States,Medium,2022,0.9794541230348746,1,30145.608000000007
 Data Scientist,Full-Time,Mid,Intermediate,102100,United States,102100,United States,Medium,2022,0.707730120041477,1,30145.608000000007
@@ -5444,7 +5431,6 @@ Head of Data,Full-Time,Senior,Expert,87000,Slovenia,102839,Slovenia,Large,2021,0
 Head of Data,Full-Time,Senior,Expert,200000,United States,200000,Malaysia,Medium,2022,1.386346954047947,2,12612.36
 Data Scientist,Full-Time,Entry,Junior,66500,Canada,51081,Canada,Large,2022,0.3540799437986159,0,28284.768000000004
 Machine Learning Engineer,Full-Time,Mid,Intermediate,121000,Australia,83864,Australia,Large,2022,0.5813230047713851,1,30104.256
-Data Scientist,Full-Time,Entry,Junior,40000,Malaysia,40000,Japan,Large,2022,0.2772693908095894,0,20965.464
 Head of Data,Full-Time,Mid,Intermediate,30000,Estonia,31520,Estonia,Small,2022,0.2184882799579564,1,21916.56
 Machine Learning Engineer,Full-Time,Senior,Expert,57000,Netherlands,59888,Netherlands,Large,2022,0.4151277319201172,2,26589.336000000003
 Data Engineer,Full-Time,Entry,Junior,48000,Germany,54742,Pakistan,Large,2020,0.3794570247924635,0,7650.12
@@ -5455,7 +5441,6 @@ Data Scientist,Full-Time,Senior,Expert,100000,United States,100000,Brazil,Medium
 Machine Learning Developer,Full-Time,Senior,Expert,100000,Canada,76814,Canada,Medium,2022,0.532454274641195,2,28284.768000000004
 Data Scientist,Full-Time,Mid,Intermediate,150000,Poland,33609,Poland,Large,2022,0.2329686738929872,1,17326.488
 Principal Data Analyst,Full-Time,Mid,Intermediate,75000,Canada,75000,Canada,Small,2022,0.5198801077679801,1,28284.768000000004
-Product Data Analyst,Full-Time,Mid,Intermediate,20000,Honduras,20000,Honduras,Small,2020,0.1386346954047947,1,15424.295999999998
 Applied Machine Learning Scientist,Contract,Entry,Junior,29000,Czechia,30469,Tunisia,Medium,2022,0.2112030267144345,0,11868.024
 Research Scientist,Full-Time,Mid,Intermediate,69999,Czechia,69999,Czechia,Large,2021,0.4852145021820112,1,
 Data Engineer,Full-Time,Entry,Junior,52800,Germany,55475,Pakistan,Medium,2022,0.3845379863790493,0,7650.12
@@ -5481,11 +5466,10 @@ Computer Vision Software Engineer,Full-Time,Entry,Junior,150000,Australia,150000
 Data Analyst,Full-Time,Mid,Intermediate,90000,United States,90000,United States,Medium,2021,0.6238561293215762,1,30145.608000000007
 Data Scientist,Freelance,Mid,Intermediate,100000,United States,100000,Canada,Medium,2022,0.6931734770239735,1,28284.768000000004
 Data Scientist,Full-Time,Entry,Junior,100000,United States,100000,United States,Small,2021,0.6931734770239735,0,30145.608000000007
-Data Scientist,Part-Time,Entry,Junior,100000,Algeria,100000,Algeria,Medium,2022,0.6931734770239735,0,12198.84
 Research Scientist,Full-Time,Senior,Expert,144000,United States,144000,United States,Large,2022,0.9981698069145218,2,30145.608000000007
 Principal Data Scientist,Full-Time,Senior,Expert,148000,Germany,155499,Germany,Medium,2022,1.0778778250375085,2,25927.704
 Computer Vision Engineer,Full-Time,Senior,Expert,24000,Brazil,24000,Brazil,Medium,2021,0.1663616344857536,2,14555.904000000002
-Applied Machine Learning Scientist,Full-Time,Mid,Intermediate,38400,United States,38400,Viet Nam,Medium,2021,0.2661786151772058,1,
+Applied Machine Learning Scientist,Full-Time,Mid,Intermediate,38400,United States,38400,Vietnam,Medium,2021,0.2661786151772058,1,12736.416
 Financial Data Analyst,Full-Time,Entry,Junior,100000,United States,100000,United States,Large,2022,0.6931734770239735,0,30145.608000000007
 Data Scientist,Full-Time,Mid,Intermediate,82500,United States,82500,United States,Small,2021,0.5718681185447781,1,30145.608000000007
 Data Scientist,Full-Time,Entry,Junior,42000,France,49646,France,Medium,2021,0.3441329044033219,0,27292.32
@@ -5501,7 +5485,6 @@ Data Analyst,Full-Time,Entry,Junior,50000,United States,50000,United States,Medi
 Principal Data Engineer,Full-Time,Senior,Expert,200000,United States,200000,United States,Medium,2021,1.386346954047947,2,30145.608000000007
 Big Data Engineer,Full-Time,Mid,Intermediate,60000,Romania,60000,Spain,Medium,2021,0.4159040862143841,1,20014.368
 Data Engineer,Full-Time,Mid,Intermediate,200000,United States,200000,United States,Large,2021,1.386346954047947,1,30145.608000000007
-Machine Learning Developer,Full-Time,Entry,Junior,100000,Iraq,100000,Iraq,Small,2021,0.6931734770239735,0,12488.304
 Data Engineer,Full-Time,Mid,Intermediate,100000,United States,100000,United States,Large,2021,0.6931734770239735,1,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,70000,Belgium,82744,Belgium,Medium,2021,0.5735594618287166,2,26051.76
 Data Engineer,Full-Time,Mid,Intermediate,51999,Germany,59303,Germany,Small,2020,0.411072667079527,1,25927.704
@@ -5611,7 +5594,6 @@ Data Scientist,Full-Time,Mid,Intermediate,70000,Germany,79833,Germany,Large,2020
 Data Engineer,Full-Time,Entry,Junior,72500,United States,72500,United States,Large,2021,0.5025507708423808,0,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,185000,United States,185000,United States,Large,2021,1.282370932494351,2,30145.608000000007
 Data Engineer,Part-Time,Mid,Intermediate,59000,Netherlands,69741,Netherlands,Large,2021,0.4834261146112893,1,26589.336000000003
-Research Scientist,Full-Time,Entry,Junior,100000,China,100000,Jersey,Large,2021,0.6931734770239735,0,30724.536
 Data Engineer,Full-Time,Mid,Intermediate,112000,United States,112000,United States,Large,2021,0.7763542942668503,1,30145.608000000007
 Machine Learning Engineer,Full-Time,Senior,Expert,150000,United States,150000,United States,Large,2020,1.0397602155359602,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,180000,Turkey,20171,Turkey,Large,2021,0.1398200220505057,2,13976.976
@@ -5650,14 +5632,13 @@ Lead Data Engineer,Full-Time,Senior,Expert,125000,New Zealand,125000,New Zealand
 Data Scientist,Full-Time,Entry,Junior,45000,France,51321,France,Small,2020,0.3557435601434734,0,27292.32
 Data Scientist,Full-Time,Mid,Intermediate,3000000,India,40481,India,Large,2020,0.2806035552340747,1,9180.144
 Data Science Consultant,Full-Time,Executive,Director,59000,Spain,69741,France,Small,2021,0.4834261146112893,3,27292.32
-Data Analytics Engineer,Full-Time,Senior,Expert,50000,United Kingdom,50000,Viet Nam,Medium,2021,0.3465867385119867,2,
+Data Analytics Engineer,Full-Time,Senior,Expert,50000,United Kingdom,50000,Vietnam,Medium,2021,0.3465867385119867,2,12736.416
 Data Scientist,Full-Time,Entry,Junior,35000,France,39916,France,Medium,2020,0.2766871250888892,0,27292.32
 Lead Data Analyst,Full-Time,Mid,Intermediate,87000,United States,87000,United States,Large,2020,0.603060925010857,1,30145.608000000007
 Data Engineer,Full-Time,Mid,Intermediate,22000,United States,26005,Romania,Large,2021,0.1802597627000843,1,16044.575999999995
 Data Scientist,Full-Time,Mid,Intermediate,76760,Germany,90734,Germany,Large,2021,0.6289440226429321,1,25927.704
 Big Data Engineer,Full-Time,Mid,Intermediate,1672000,India,22611,India,Large,2021,0.1567334548898906,1,9180.144
 Machine Learning Engineer,Full-Time,Entry,Junior,81000,United States,81000,United States,Small,2021,0.5614705163894186,0,30145.608000000007
-Data Scientist,Full-Time,Mid,Intermediate,30400000,Chile,40038,Chile,Large,2021,0.2775327967308585,1,16499.448
 Data Science Consultant,Full-Time,Entry,Junior,90000,United States,90000,United States,Small,2021,0.6238561293215762,0,30145.608000000007
 Data Scientist,Full-Time,Mid,Intermediate,52000,Austria,61467,Germany,Medium,2021,0.4260729411223258,1,25927.704
 Machine Learning Infrastructure Engineer,Full-Time,Senior,Expert,195000,United States,195000,United States,Medium,2021,1.3516882801967482,2,30145.608000000007
@@ -5701,7 +5682,6 @@ Finance Data Analyst,Full-Time,Senior,Expert,45000,United Kingdom,61896,United K
 Data Engineer,Full-Time,Senior,Expert,65000,United Kingdom,76833,Romania,Small,2021,0.5325859776018296,2,16044.575999999995
 Machine Learning Engineer,Full-Time,Mid,Intermediate,74000,Japan,74000,Japan,Small,2021,0.5129483729977404,1,20965.464
 Data Science Manager,Full-Time,Senior,Expert,152000,France,152000,United States,Large,2021,1.0536236850764398,2,30145.608000000007
-Big Data Engineer,Full-Time,Mid,Intermediate,18000,"Moldova, Republic of",18000,"Moldova, Republic of",Small,2021,0.1247712258643152,1,
 Computer Vision Engineer,Freelance,Senior,Expert,60000,United States,60000,Russian Federation,Small,2020,0.4159040862143841,2,
 Data Scientist,Full-Time,Mid,Intermediate,130000,United States,130000,United States,Large,2021,0.9011255201311656,1,30145.608000000007
 Computer Vision Engineer,Full-Time,Senior,Expert,102000,Brazil,18907,Brazil,Medium,2021,0.1310583093009226,2,14555.904000000002
@@ -5728,7 +5708,6 @@ Machine Learning Engineer,Full-Time,Senior,Expert,40000,Croatia,45618,Croatia,Sm
 Director of Data Science,Full-Time,Senior,Expert,168000,Japan,168000,Japan,Small,2021,1.1645314414002754,2,20965.464
 Data Scientist,Full-Time,Mid,Intermediate,160000,Israel,119059,Singapore,Medium,2021,0.8252854100099726,1,33867.288
 Applied Machine Learning Scientist,Full-Time,Mid,Intermediate,423000,United States,423000,United States,Large,2021,2.932123807811408,1,30145.608000000007
-Data Engineer,Full-Time,Mid,Intermediate,24000,Malta,28369,Malta,Large,2021,0.196646383696931,1,22784.952
 Data Specialist,Full-Time,Senior,Expert,165000,United States,165000,United States,Large,2021,1.1437362370895563,2,30145.608000000007
 Data Scientist,Full-Time,Senior,Expert,412000,United States,412000,United States,Large,2020,2.855874725338771,2,30145.608000000007
 Principal Data Scientist,Full-Time,Mid,Intermediate,151000,United States,151000,United States,Large,2021,1.0466919503062,1,30145.608000000007
