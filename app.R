@@ -197,7 +197,7 @@ ui <- fluidPage(
 
   tags$script(HTML("
     Shiny.addCustomMessageHandler('expandRow', function(message) {
-      var table = $('#summary_table').dataTable();
+      var table = $('#summary_table').DataTable();
       var rowIndex = -1;
       table.rows().every(function(index, element) {
         var data = this.data();
@@ -472,35 +472,35 @@ server <- function(input, output, session) {
         autoWidth = TRUE
       ),
       callback = JS("
-        return function(table) {
-          table.on('draw.dt', function() {
-            table.rows().every(function(rowIdx, tableLoop, rowLoop) {
-              var row = this.node();
-              var $row = $(row);
+        table.on('draw.dt', function() {
+          table.rows().every(function() {
+            var row = this.node();
+            var $row = $(row);
+            
+            if (!$row.hasClass('clickable')) {
+              $row.addClass('clickable');
+              $row.css('cursor', 'pointer');
 
-              if (!$row.hasClass('clickable')) {
-                $row.addClass('clickable');
-                $row.css('cursor', 'pointer');
+              $row.off('dblclick').on('dblclick', function() {
+                var data = table.row(this).data();
+                if (!data) return;
 
-                $row.on('dblclick', function() {
-                  var data = table.row(this).data();
-                  var id = data[0];  // Asegúrate que el ID de agrupación está en la primera columna
-                  console.log('Doble clic en: ' + id);
+                var id = data[0];
+                console.log('Doble clic en: ' + id);
 
-                  Shiny.setInputValue('expand_row', id, {priority: 'event'});
+                Shiny.setInputValue('expand_row', id, {priority: 'event'});
 
-                  var tr = $(this);
-                  if (tr.hasClass('shown')) {
-                    tr.next('tr.details').remove();
-                    tr.removeClass('shown');
-                  } else {
-                    tr.addClass('shown');
-                  }
-                });
-              }
-            });
-          }).draw(); // Fuerza el primer draw para enganchar los eventos
-        }
+                var tr = $(this);
+                if (tr.hasClass('shown')) {
+                  tr.next('tr.details').remove();
+                  tr.removeClass('shown');
+                } else {
+                  tr.addClass('shown');
+                }
+              });
+            }
+          });
+        });
       ")
     ) %>%
       formatCurrency(c("Salari_Mitja", "Cost_Vida", "Salari_Disponible", "Salari_Màxim", "Salari_Mínim"), currency = "$")
