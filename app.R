@@ -134,10 +134,6 @@ ui <- fluidPage(
                    br(),
                    plotlyOutput("dist_plot", height = "800px")),
           
-          tabPanel(tagList(icon("balance-scale"), span("Comparació global")),
-                   br(),
-                   plotlyOutput("comparativa_plot", height = "800px")),
-          
           tabPanel(tagList(icon("pie-chart"), span("Remot vs Presencial")),
                    br(),
                    plotlyOutput("remote_plot", height = "400px")),
@@ -446,24 +442,6 @@ server <- function(input, output, session) {
              yaxis = list(title = "Comptatge"))
   })
   
-  output$comparativa_plot <- renderPlotly({
-    mean_global <- mean(df$`Salary in USD`, na.rm = TRUE)
-    mean_filtrado <- mean(filtered_data()$`Salary in USD`, na.rm = TRUE)
-    
-    plot_ly(
-      x = c("Global", "Filtrat"),
-      y = c(mean_global, mean_filtrado),
-      type = "bar",
-      marker = list(color = c("rgba(127, 140, 141, 0.8)", "rgba(39, 174, 96, 0.8)"),
-                    line = list(color = c("rgba(127, 140, 141, 1.0)", "rgba(39, 174, 96, 1.0)"), width = 1)),
-      text = c(dollar(mean_global), dollar(mean_filtrado)),
-      hoverinfo = "text+x"
-    ) %>%
-      layout(title = "Comparació del salari mitjà",
-             xaxis = list(title = ""),
-             yaxis = list(title = "Salari mitjà (USD)", rangemode = "tozero"))
-  })
-  
   output$summary_table <- renderDT({
     req(input$group_by)
 
@@ -500,9 +478,25 @@ server <- function(input, output, session) {
   output$recom_countries <- renderDataTable({
     filtered_data() %>%
       group_by(`Company Location`) %>%
-      summarise(Salari_Mig = mean(`Salary in USD`, na.rm = TRUE)) %>%
-      arrange(desc(Salari_Mig)) %>%
-      slice_head(n = 3)
+      summarise(
+        Salari_Mig = mean(`Salary in USD`, na.rm = TRUE),
+        Cost_Vida = mean(cost, na.rm = TRUE),
+        Salari_Disponible = mean(`Salary in USD` - cost, na.rm = TRUE),
+        .groups = "drop"
+      ) %>%
+      arrange(desc(Salari_Disponible)) %>%
+      slice_head(n = 3) %>%
+      datatable(
+        class = 'compact',
+        rownames = FALSE,
+        options = list(
+          dom = 't',
+          paging = FALSE,
+          searching = FALSE,
+          info = FALSE
+        )
+      ) %>%
+      formatCurrency(c("Salari_Mig", "Cost_Vida", "Salari_Disponible"), currency = "$", digits = 2)
   })
   
   output$recom_title <- renderPrint({
