@@ -8,5 +8,5 @@ month_cost = 1710 # https://www.numbeo.com/cost-of-living/in/New-York
 month_rent = 1736 # https://www.rentcafe.com/average-rent-market-trends/us/
 total = month_rent + month_cost
 
-df['cost'] = (df['cost']/100)*total
-df.to_csv('Cost_of_living.csv', index=False)
+df['cost'] = (df['cost']/100)*total*12
+df.to_csv('Cost_of_living_anual.csv', index=False)

@@ -1,7 +1,7 @@
 import pandas as pd
 
 main_df = pd.read_csv('Data_Science_Salaries.csv')
-cost_df = pd.read_csv('cost_of_living.csv')
+cost_df = pd.read_csv('cost_of_living_anual.csv')
 
 # Petit ajustament pels joins que sino no va
 # main_df.loc[main_df['Employee Residence'] == 'Viet Nam', 'Employee Residence'] = 'Vietnam'
@@ -15,4 +15,4 @@ cost_df = pd.read_csv('cost_of_living.csv')
 df_merged = pd.merge(main_df, cost_df, left_on='Employee Residence', right_on='country', how='left')
 df_merged = df_merged.drop(df_merged.columns[-2], axis=1)
 
-df_merged.to_csv('Salaries.csv', index=False)
+df_merged.to_csv('Salaries_anual.csv', index=False)

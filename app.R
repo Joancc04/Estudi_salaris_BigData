@@ -1,7 +1,7 @@
 # Versión 3 - Explorador de Salarios con diseño profesional
 
 # Instalar si no tienes estos paquetes
-# install.packages(c("shiny", "dplyr", "ggplot2", "readr", "plotly", "DT", "scales", "bslib"))
+# install.packages(c("shiny", "dplyr", "ggplot2", "readr", "plotly", "DT", "scales", "bslib", "shinyWidgets"))
 
 library(shiny)
 library(dplyr)
@@ -11,9 +11,11 @@ library(plotly)
 library(DT)
 library(scales)
 library(bslib)
+library(shinyWidgets)
 
 # Cargar el dataset
-df <- read_csv("Data_Science_Salaries.csv")
+# df <- read_csv("Data_Science_Salaries.csv")
+df <- read_csv("Salaries_anual.csv")
 
 # Añadir columna de región y teletrabajo
 df <- df %>% mutate(
@@ -26,7 +28,8 @@ df <- df %>% mutate(
     `Company Location` %in% c('Australia', 'American Samoa') ~ "Oceanía",
     TRUE ~ "Altres"
   ),
-  Teletrabajo = if_else(`Company Location` == `Employee Residence`, "Presencial", "Remot")
+  Teletrabajo = if_else(`Company Location` == `Employee Residence`, "Presencial", "Remot"),
+  SalariDisponible = `Salary in USD` - cost
 )
 
 # UI mejorado con layout moderno
@@ -83,12 +86,32 @@ ui <- fluidPage(
                    h4("Calcula una estimació del teu salari"),
                    p("Aquesta estimació es basa en els filtres seleccionats a l'esquerra."),
                    br(),
-                   h4("Salari estimat:"),
-                   verbatimTextOutput("simulated_salary")
+                   h4("Salari brut estimat:"),
+                   verbatimTextOutput("simulated_salary"),
+                   br(),
+                   h4("Cost de vida estimat:"),
+                   verbatimTextOutput("simulated_life_cost"),
+                   br(),
+                   h4("Salari disponible estimat:"),
+                   verbatimTextOutput("simulated_net_salary")
           ),
           tabPanel(tagList(icon("chart-bar"), span("Salari mitjà per país")),
                    br(),
-                   plotlyOutput("salary_plot", height = "800px")),
+                   plotlyOutput("salary_plot", height = "800px"),
+                   div(
+                    tags$style(HTML("
+                      .radio-inline + .radio-inline {
+                        margin-left: 20px;
+                      }
+                    ")),
+                    radioButtons(
+                      inputId = "salary_type",
+                      label = NULL,
+                      choices = c("Brut" = "brut", "Disponible" = "disponible"),
+                      selected = "brut",
+                      inline = TRUE
+                    )
+                  )),
           
           tabPanel(tagList(icon("dollar-sign"), span("Treballs millor pagats")),
                    br(),
@@ -108,8 +131,19 @@ ui <- fluidPage(
           
           tabPanel(tagList(icon("table"), span("Estadístiques resum")),
                    br(),
-                   dataTableOutput("summary_table")),
-          
+                   radioGroupButtons(
+                     inputId = "group_by",
+                     label = NULL,
+                     choices = c("PAIS" = "Company Location",
+                                "EXPERIENCIA" = "Experience Level",
+                                "POSICIÓ" = "Job Title",
+                                "EMPRESA" = "Company Size"),
+                     selected = "Company Location",
+                     direction = "horizontal",
+                     justified = TRUE),
+                   br(),
+                   DTOutput("summary_table")),
+
           tabPanel(tagList(icon("lightbulb"), span("Recomanacions")),
                    br(),
                    h4("Millors països segons el teu perfil:"),
@@ -123,21 +157,147 @@ ui <- fluidPage(
       )
     ),
     br()
-  )
+  ),
+
+  tags$script(HTML("
+    $(document).on('shiny:connected', function() {
+      function enableDeselectOnDoubleClick(selectId) {
+        var input = $('#' + selectId)[0];
+        if (!input) return;
+        var selectize = input.selectize;
+
+        $('#' + selectId + ' + .selectize-control .item').each(function() {
+          var $item = $(this);
+          $item.off('dblclick').on('dblclick', function() {
+            var value = $item.attr('data-value');
+            selectize.removeItem(value);
+          });
+        });
+
+        selectize.on('change', function() {
+          setTimeout(function() {
+            $('#' + selectId + ' + .selectize-control .item').each(function() {
+              var $item = $(this);
+              $item.off('dblclick').on('dblclick', function() {
+                var value = $item.attr('data-value');
+                selectize.removeItem(value);
+              });
+            });
+          }, 0);
+        });
+      }
+
+      // Aplica a ambos selectores
+      setTimeout(function() {
+        enableDeselectOnDoubleClick('region');
+        enableDeselectOnDoubleClick('countries');
+      }, 1000);
+    });
+  ")),
+
+  tags$script(HTML("
+    Shiny.addCustomMessageHandler('expandRow', function(message) {
+      var table = $('#summary_table').dataTable();
+      var rowIndex = -1;
+      table.rows().every(function(index, element) {
+        var data = this.data();
+        if (data[0] == message.id) {
+          rowIndex = index;
+          return false;
+        }
+      });
+
+      if (rowIndex === -1) return;
+
+      var tr = $(table.row(rowIndex).node());
+      var next = tr.next();
+
+      if (next.hasClass('details')) {
+        next.remove();
+      } else {
+        tr.after(message.html);
+      }
+    });
+  ")),
+
+  tags$style(HTML("
+    /* Estilo por defecto */
+    .btn-group .btn {
+      background-color: #f5f5f5 !important;
+      color: #000000 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      font-weight: bold;
+    }
+
+    /* Hover */
+    .btn-group .btn:hover {
+      background-color: #e0e0e0 !important;
+      color: #000000 !important;
+    }
+
+    /* Estado activo REAL de radioGroupButtons */
+    .btn-check:checked + .btn,
+    .btn-group .btn.active {
+      background-color: #d0d0d0 !important;
+      color: #000000 !important;
+      box-shadow: none !important;
+    }
+
+    /* Borde del grupo */
+    .btn-group {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+  "))
+
 )
 
 server <- function(input, output, session) {
   
   observe({
-  region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
-    df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
-  } else {
-    character(0)
-  }
+    region_countries <- if (!is.null(input$region) && length(input$region) > 0) {
+      df %>% filter(Region %in% input$region) %>% pull(`Company Location`) %>% unique()
+    } else {
+      character(0)
+    }
 
-  available_countries <- setdiff(sort(unique(df$`Company Location`)), region_countries)
+    all_countries <- sort(unique(df$`Company Location`))
+    available_countries <- setdiff(all_countries, region_countries)
 
-  updateSelectizeInput(session, "countries", choices = available_countries, server = TRUE)
+    # Preservar selección previa válida
+    current_selection <- isolate(input$countries)
+    valid_selection <- intersect(current_selection, available_countries)
+
+    updateSelectizeInput(session, "countries",
+                        choices = available_countries,
+                        selected = valid_selection,
+                        server = TRUE)
+  })
+
+  observeEvent(input$expand_row, {
+    req(input$expand_row)
+
+    group_var <- input$group_by
+    details <- filtered_data() %>%
+      filter(.data[[group_var]] == input$expand_row) %>%
+      select(`Company Location`, `Job Title`, `Experience Level`, `Salary in USD`, `Company Size`, Teletrabajo)
+
+    table_html <- paste0(
+      "<tr class='details'><td colspan='", ncol(details) + 1, "'>",
+      "<table class='table table-sm table-bordered' style='margin:10px;'>",
+      "<thead><tr>",
+      paste0(lapply(colnames(details), function(col) paste0("<th>", col, "</th>")), collapse = ""),
+      "</tr></thead><tbody>",
+      paste0(apply(details, 1, function(row) {
+        paste0("<tr>", paste0(lapply(row, function(cell) paste0("<td>", cell, "</td>")), collapse = ""), "</tr>")
+      }), collapse = ""),
+      "</tbody></table>",
+      "</td></tr>"
+    )
+
+  session$sendCustomMessage("expandRow", list(id = input$expand_row, html = table_html))
   })
 
   # Filtrado reactivo de dades amb region i modalitat de treball
@@ -182,27 +342,47 @@ server <- function(input, output, session) {
     }
   )
   
+  region_colors <- c(
+    "Europa"            = "#4B6C8A",  # Azul oscuro pastel
+    "Asia"              = "#F5D76E",  # Amarillo pastel
+    "África"            = "#A1866F",  # Marrón pastel
+    "América del Sur"   = "#3E7D5E",  # Verde oscuro pastel
+    "Oceanía"           = "#A2CBE3",  # Azul claro pastel
+    "América del Norte" = "#E57373",   # Rojo pastel
+    "Altres"            = "#7f7f7f"   # gris
+  )
+
+
   output$salary_plot <- renderPlotly({
-    filtered_data() %>%
-      group_by(`Company Location`) %>%
-      summarise(Salari_Mig = mean(`Salary in USD`, na.rm = TRUE)) %>%
-      arrange(desc(Salari_Mig)) %>%
-      plot_ly(
-        y = ~reorder(`Company Location`, Salari_Mig),
-        x = ~Salari_Mig,
-        type = 'bar',
-        orientation = 'h',
-        marker = list(color = 'rgba(38, 166, 154, 0.8)',
-                      line = list(color = 'rgba(38, 166, 154, 1.0)', width = 1)),
-        text = ~paste0("$", formatC(Salari_Mig, format = "f", big.mark = ",", digits = 0)),
-        hoverinfo = 'text+y'
+    df_plot <- filtered_data() %>%
+      group_by(`Company Location`, Region) %>%
+      summarise(
+        Salari_Mig = mean(`Salary in USD`, na.rm = TRUE),
+        Salari_Disponible = mean(`Salary in USD` - cost, na.rm = TRUE),
+        .groups = "drop"
       ) %>%
-      layout(
-        title = list(text = "Salari mitjà per país", font = list(size = 20)),
-        xaxis = list(title = "Salari mitjà (USD)", tickfont = list(size = 12)),
-        yaxis = list(title = "País", tickfont = list(size = 10)),
-        margin = list(t = 30, l = 140)
-      )
+      arrange(desc(if (input$salary_type == "disponible") Salari_Disponible else Salari_Mig))
+
+    y_value <- if (input$salary_type == "disponible") df_plot$Salari_Disponible else df_plot$Salari_Mig
+    text_value <- if (input$salary_type == "disponible") "Salari disponible" else "Salari brut"
+
+    plot_ly(
+      data = df_plot,
+      y = ~reorder(`Company Location`, y_value),
+      x = ~y_value,
+      type = 'bar',
+      orientation = 'h',
+      color = ~Region,
+      colors = region_colors,
+      text = ~paste0("$", formatC(y_value, format = "f", big.mark = ",", digits = 0)),
+      hoverinfo = 'text+y'
+    ) %>% layout(
+      title = list(text = paste0(text_value, " per país"), font = list(size = 20)),
+      xaxis = list(title = paste0(text_value, " (USD)"), tickfont = list(size = 12)),
+      yaxis = list(title = "País", tickfont = list(size = 10)),
+      margin = list(t = 30, l = 140),
+      legend = list(title = list(text = "Regió"))
+    )
   })
   
   output$title_plot <- renderPlotly({
@@ -261,14 +441,69 @@ server <- function(input, output, session) {
              yaxis = list(title = "Salari mitjà (USD)", rangemode = "tozero"))
   })
   
-  output$summary_table <- renderDataTable({
-    filtered_data() %>%
+  output$summary_table <- renderDT({
+    req(input$group_by)
+
+    summary_df <- filtered_data() %>%
+      group_by(.data[[input$group_by]]) %>%
       summarise(
         Observacions = n(),
-        Salari_Mitja = dollar(mean(`Salary in USD`, na.rm = TRUE)),
-        Salari_Màxim = dollar(max(`Salary in USD`, na.rm = TRUE)),
-        Salari_Mínim = dollar(min(`Salary in USD`, na.rm = TRUE))
-      )
+        Salari_Mitja = mean(`Salary in USD`, na.rm = TRUE),
+        Cost_Vida = mean(cost, na.rm = TRUE),
+        Salari_Disponible = mean(`Salary in USD` - cost, na.rm = TRUE),
+        Salari_Màxim = max(`Salary in USD`, na.rm = TRUE),
+        Salari_Mínim = min(`Salary in USD`, na.rm = TRUE),
+        .groups = "drop"
+      ) %>%
+      arrange(desc(Salari_Mitja))
+
+    colnames(summary_df)[1] <- input$group_by
+
+    DT::datatable(
+      summary_df,
+      class = 'display',
+      escape = FALSE,
+      selection = "none",
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        ordering = TRUE,
+        info = TRUE,
+        autoWidth = TRUE
+      ),
+      callback = JS("
+        return function(table) {
+          table.on('draw.dt', function() {
+            table.rows().every(function(rowIdx, tableLoop, rowLoop) {
+              var row = this.node();
+              var $row = $(row);
+
+              if (!$row.hasClass('clickable')) {
+                $row.addClass('clickable');
+                $row.css('cursor', 'pointer');
+
+                $row.on('dblclick', function() {
+                  var data = table.row(this).data();
+                  var id = data[0];  // Asegúrate que el ID de agrupación está en la primera columna
+                  console.log('Doble clic en: ' + id);
+
+                  Shiny.setInputValue('expand_row', id, {priority: 'event'});
+
+                  var tr = $(this);
+                  if (tr.hasClass('shown')) {
+                    tr.next('tr.details').remove();
+                    tr.removeClass('shown');
+                  } else {
+                    tr.addClass('shown');
+                  }
+                });
+              }
+            });
+          }).draw(); // Fuerza el primer draw para enganchar los eventos
+        }
+      ")
+    ) %>%
+      formatCurrency(c("Salari_Mitja", "Cost_Vida", "Salari_Disponible", "Salari_Màxim", "Salari_Mínim"), currency = "$")
   })
   
   output$recom_countries <- renderDataTable({
@@ -336,6 +571,25 @@ server <- function(input, output, session) {
   mean_salary <- mean(data$`Salary in USD`, na.rm = TRUE)
 
   paste0("$", formatC(mean_salary, format = "f", digits = 0, big.mark = ","))
+})
+
+output$simulated_life_cost <- renderPrint({
+  data <- filtered_data()
+
+  mean_cost <- mean(data$`cost`, na.rm = TRUE)
+
+  paste0("$", formatC(mean_cost, format = "f", digits = 0, big.mark = ","))
+})
+
+output$simulated_net_salary <- renderPrint({
+  data <- filtered_data()
+
+  mean_salary <- mean(data$`Salary in USD`, na.rm = TRUE)
+  mean_cost <- mean(data$`cost`, na.rm = TRUE)  # Asegúrate que la columna se llame así
+
+  net_salary <- mean_salary - mean_cost
+
+  paste0("$", formatC(net_salary, format = "f", digits = 0, big.mark = ","))
 })
   
   output$recom_text <- renderText({
