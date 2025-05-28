@@ -157,8 +157,10 @@ ui <- fluidPage(
                    br(),
                    h4("Millors països segons el teu perfil:"),
                    dataTableOutput("recom_countries"),
+                   br(),
                    h4("Títol de treball millor pagat:"),
                    verbatimTextOutput("recom_title"),
+                   br(),
                    h4("Recomanació personalitzada:"),
                    textOutput("recom_text")
           )
@@ -201,31 +203,6 @@ ui <- fluidPage(
         enableDeselectOnDoubleClick('region');
         enableDeselectOnDoubleClick('countries');
       }, 1000);
-    });
-  ")),
-
-  tags$script(HTML("
-    Shiny.addCustomMessageHandler('expandRow', function(message) {
-      var table = $('#summary_table').DataTable();
-      var rowIndex = -1;
-      table.rows().every(function(index, element) {
-        var data = this.data();
-        if (data[0] == message.id) {
-          rowIndex = index;
-          return false;
-        }
-      });
-
-      if (rowIndex === -1) return;
-
-      var tr = $(table.row(rowIndex).node());
-      var next = tr.next();
-
-      if (next.hasClass('details')) {
-        next.remove();
-      } else {
-        tr.after(message.html);
-      }
     });
   ")),
 
